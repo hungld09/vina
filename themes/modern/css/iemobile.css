@@ -1,0 +1,324 @@
+/*
+NO FIXED HEADER
+-------------------------------------------------------------------------------------*/
+header {
+    position: static;
+}
+.container {
+    margin-top: 0;
+}
+
+/*
+HIDE ICON FONT
+-------------------------------------------------------------------------------------*/
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    background: url('../images/icon.png') no-repeat;
+    content: " " !important;
+}
+.user-upload .icon-singer, .sidebar .show-info:before, .glist .slist li a:before, .icon-pause, .icon-play, .icon-prev, .icon-next, .info-function span:before, .bxh .all-listening span:before {
+	background: url('../images/icon.png') no-repeat !important;
+}
+
+/*
+STYLE FOR IE
+-------------------------------------------------------------------------------------*/
+.content .content-items li, .info-function li a, .info-function span, .bxh .all-listening span, .sidebar .navigator li a, .flyout .frm-alert {
+    position: relative;
+}
+.icon-luot-thich:before, .icon-luot-nghe:before, .bxh .all-listening span:before, .icon-menu:before, .icon-dropdown:before, .icon-rutgon:before, .icon-search:before, .frm-search .icon-delete:before, .icon-luot-ham-mo:before, .icon-home:before, .icon-album:before, .icon-video:before, .icon-singer:before, .main-search .icon-singer:before, .icon-BXH:before, .play-video .info-function .icon-luot-thich span:before, .icon-add span:before, .icon-share span:before, .icon-phone span:before, .playlist .icon-luot-thich span:before, .play .icon-luot-thich span:before, .read-more .icon-dropdown:before, .flyout .icon-delete:before, .flyout .s-footer .icon-play:before, .flyout .s-footer .icon-pause:before, .flyout .frm-alert:before, .read-more .icon-rutgon:before {
+    position: absolute;
+}
+.bxh .all-listening span:before, .frm-login .frm-alert:before, .flyout .frm-alert:before {
+    top: 0;
+    left: 0;
+}
+.content .content-items li {
+	padding-left: 20px;
+}
+.content .content-items .info-artist li {
+    padding-left: 0;
+}
+.info-function span {
+    line-height: 60px;
+}
+.icon-luot-thich:before, .icon-luot-nghe:before {
+	left: 0;
+    width: 12px;
+    height: 13px;
+}
+.icon-luot-thich:before {
+	background-position: -9px -7px;
+}
+.play-video .info-function .icon-luot-thich:before {
+	background: none;
+}
+.icon-luot-nghe:before {
+	background-position: -39px -8px;
+}
+.bxh .all-listening span {
+	padding-left: 30px;
+}
+.bxh .all-listening span:before {
+	display: block;
+    background-position: -270px -5px !important;
+    content: " ";
+}
+.bxh .all-listening.icon-luot-nghe:before {
+    background: none;
+}
+.icon-menu:before {
+	top: 7px;
+    left: 9px;
+    width: 17px;
+    height: 14px;
+    background-position: -67px -8px;
+}
+.icon-dropdown:before, .icon-rutgon:before {
+    top: 18px !important;
+    width: 13px;
+    height: 8px;
+}
+.icon-dropdown:before {
+	background-position: -99px -11px;
+}
+.icon-rutgon:before {
+    background-position: -99px -11px;
+}
+.main-search .icon-dropdown:before {
+    top: 12px !important;
+}
+.main-search .icon-rutgon {
+	top: 19px !important;
+    right: -7px;
+    width: 30px;
+}
+.icon-search:before {
+	top: 3px;
+    right: 0;
+    width: 16px;
+    height: 17px;
+    background-position: -127px -7px;
+}
+.frm-search .icon-delete:before {
+    top: 3px;
+    right: 0;
+    width: 16px;
+    height: 17px;
+    background-position: -157px -217px;
+}
+.icon-delete:before {
+	width: 19px;
+	height: 19px;
+	background-position: -117px -190px;
+}
+.user-song .icon-delete:before {
+	background-position: -117px -200px;
+}
+.user-playlist-edit .icon-delete:before {
+	background-position: 4px -209px;
+}
+.user-upload .icon-singer, .icon-edit:before, .play-video .info-function .icon-luot-thich span:before, .frm-login .frm-alert:before, .flyout .frm-alert:before, .flyout .s-footer .icon-play:before, .flyout .s-footer .icon-pause:before, .bxh .all-listening span:before {
+    width: 30px;
+    height: 30px;
+}
+.user-upload .icon-singer {
+	background-position: -175px -6px;
+}
+.icon-edit:before {
+	background-position: -87px -190px;
+}
+.icon-luot-ham-mo:before {
+	left: 0;
+    width: 25px;
+    height: 30px;
+    background-position: -249px -8px;
+}
+.icon-up:before, .icon-down:before {
+    width: 32px !important;
+    height: 30px;
+}
+.icon-up:before {
+	background-position: -293px -1px;
+}
+.icon-down:before {
+	background-position: -324px -1px;
+}
+.icon-stand:before {
+    width: 36px !important;
+    height: 30px;
+	background-position: 10px -30px;
+}
+.icon-new:before {
+    width: 42px !important;
+    height: 30px;
+	background-position: -23px -30px;
+}
+.sidebar .show-info:before, .glist .slist li a:before {
+	width: 11px;
+    height: 21px;
+    background-position: -100px -34px !important;
+    content: " ";
+}
+.sidebar .navigator li a {
+	padding-left: 45px !important;
+}
+.icon-home:before {
+	left: 16px;
+    width: 30px !important;
+    height: 30px;
+    background-position: -158px -34px;
+}
+.icon-home.active:before {
+	background-position: -188px -34px;
+}
+.icon-album:before, .icon-video:before, .icon-singer:before, .icon-BXH:before {
+    left: 16px;
+    width: 30px !important;
+    height: 30px;
+}
+.icon-album:before {
+	background-position: -217px -34px;
+}
+.icon-album.active:before {
+	background-position: -247px -34px;
+}
+.icon-video:before {
+	background-position: -278px -34px;
+}
+.icon-video.active:before {
+	background-position: -308px -34px;
+}
+.icon-singer:before {
+	background-position: -6px -64px;
+}
+.icon-singer.active:before {
+	background-position: -36px -64px;
+}
+.main-search .icon-singer:before {
+    left: 0;
+    width: 25px !important;
+    height: 30px;
+    background-position: -307px -98px;
+}
+.icon-BXH:before {
+	background-position: -66px -64px;
+}
+.icon-BXH.active:before {
+	background-position: -96px -64px;
+}
+.playlist .icon-pause, .playlist .icon-play, .icon-prev {
+    width: 25px;
+    height: 34px;
+}
+.play .icon-play, .play .icon-pause {
+    width: 25px;
+    height: 25px;
+}
+.playlist .icon-pause {
+	background-position: -124px -61px !important;
+}
+.playlist .icon-play {
+	background-position: -154px -61px !important;
+}
+.play .icon-play {
+	background-position: -337px -33px !important;
+}
+.play .icon-pause {
+	background-position: -6px -93px !important;
+}
+.icon-prev {
+	background-position: -186px -63px !important;
+}
+.icon-next {
+    width: 25px;
+    height: 30px;
+	background-position: -216px -63px !important;
+}
+.play-video .info-function .icon-luot-thich span:before {
+    top: -20px;
+    background-position: -239px -63px !important;
+    content: " ";
+}
+.info-function span {
+    display: inline;
+}
+.icon-add span:before, .icon-share span:before, .icon-phone span:before, .playlist .icon-luot-thich span:before, .play .icon-luot-thich span:before {
+    top: -20px;
+    width: 35px;
+    height: 30px;
+	content: " ";
+}
+.icon-add span:before {
+	background-position: -269px -63px !important;
+}
+.icon-share span:before {
+	background-position: -295px -63px !important;
+}
+.icon-phone span:before {
+	background-position: -324px -63px !important;
+}
+.playlist .icon-luot-thich span:before, .play .icon-luot-thich span:before {
+	background-position: -240px -63px !important;
+}
+.playlist .info-function .icon-luot-thich:before, .play .info-function .icon-luot-thich:before {
+	background: none;
+}
+.read-more .icon-dropdown:before {
+    top: 0 !important;
+    width: 30px;
+    height: 44px;
+    background-position: -38px -88px !important;
+}
+.flyout .frm-alert {
+	padding-left: 30px;
+}
+.frm-login .frm-alert:before, .flyout .frm-alert:before {
+    background-position: -270px -90px !important;
+}
+.flyout .frm-alert:before {
+	top:-5px;
+}
+.read-more .icon-rutgon:before {
+    top: 0 !important;
+    width: 30px;
+    height: 44px;
+    background-position: -68px -88px !important;
+}
+.glist .slist li a.active:before {
+	background-position: -130px -34px;
+}
+.jp-button:before {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y3ZjdmNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiZmJmYmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+}
+.popup-option .s-footer strong:after, .button {
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzRkNGQ0ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzQwNDA0MCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iIzMzMzMzMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyNjI2MjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+}
+.jp-play-bar-node {
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZkZmRmZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZWYzZjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+}
+.button-light {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhZmFmYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlY2VjZWMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+}
+.flyout .glist .slist li a:before {
+    background: none !important;
+}
+.flyout .icon-delete:before {
+    top: 0;
+    right: 2px;
+    width: 25px;
+    height: 28px;
+    background-position: -151px 2px !important;
+}
+.flyout .s-footer .icon-play:before {
+    top: -4px;
+    left: 0;
+	background-position: -30px -210px;
+}
+.flyout .s-footer .icon-pause:before {
+    top: -5px !important;
+    left: -1.5px !important;
+	background-position: -60px -210px;
+}
+.flyout .s-footer .icon-play, .flyout .s-footer .icon-pause {
+	background: none !important;
+}

@@ -1,0 +1,17 @@
+allow from all
+<IfModule mod_rewrite.c>
+#	RewriteEngine On
+
+	# Some hosts may require you to use the `RewriteBase` directive.
+	# If you need to use the `RewriteBase` directive, it should be the
+	# absolute physical path to the directory that contains this htaccess file.
+	#
+	# RewriteBase /
+
+#	RewriteCond %{REQUEST_FILENAME} !-f
+#	RewriteRule ^ index.php [QSA,L]
+
+	RewriteEngine On
+            RewriteCond %{HTTP_HOST} !hocde.vn$ [NC]
+            RewriteRule ^(.*)$ http://www.hocde.onedu.vn/$1 [L,R=301]
+</IfModule>
