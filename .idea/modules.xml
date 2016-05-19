@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/echat.vn.iml" filepath="$PROJECT_DIR$/.idea/echat.vn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/vhocde.iml" filepath="$PROJECT_DIR$/.idea/vhocde.iml" />
     </modules>
   </component>
 </project>

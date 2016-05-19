@@ -1,22 +1,27 @@
 <?php
 
     /**
-     * This is the model class for table "category".
+     * This is the model class for table "videos".
      *
-     * The followings are the available columns in table 'category':
+     * The followings are the available columns in table 'videos':
      *
      * @property integer $id
-     * @property string  $title
-     * @property string  $title_code
+     * @property string  $name
+     * @property string  $thumb
+     * @property integer $chapter_id
+     * @property integer $subject_id
+     * @property integer $class_id
+     * @property string  $created
+     * @property integer $status
      */
-    class CategoryBlog extends CActiveRecord
+    class Videos extends CActiveRecord
     {
         /**
          * @return string the associated database table name
          */
         public function tableName()
         {
-            return 'category_blog';
+            return 'videos';
         }
 
         /**
@@ -27,11 +32,13 @@
             // NOTE: you should only define rules for those attributes that
             // will receive user inputs.
             return array(
-                array('title, title_code', 'required'),
-                array('title, title_code', 'length', 'max' => 255),
+                array('name', 'required'),
+                array('chapter_id, subject_id, class_id, status', 'numerical', 'integerOnly' => TRUE),
+                array('name, thumb', 'length', 'max' => 255),
+                array('created', 'safe'),
                 // The following rule is used by search().
                 // @todo Please remove those attributes that should not be searched.
-                array('id, title, title_code', 'safe', 'on' => 'search'),
+                array('id, name, thumb, chapter_id, subject_id, class_id, created, status', 'safe', 'on' => 'search'),
             );
         }
 
@@ -52,8 +59,13 @@
         {
             return array(
                 'id'         => 'ID',
-                'title'      => 'Tên chuyên mục',
-                'title_code' => 'Title Code',
+                'name'       => 'Tiêu đề',
+                'thumb'      => 'Thumbnail',
+                'chapter_id' => 'Chương',
+                'subject_id' => 'Môn học',
+                'class_id'   => 'Lớp',
+                'created'    => 'Ngày tạo',
+                'status'     => 'Trạng thái',
             );
         }
 
@@ -76,8 +88,13 @@
             $criteria = new CDbCriteria;
 
             $criteria->compare('id', $this->id);
-            $criteria->compare('title', $this->title, TRUE);
-            $criteria->compare('title_code', $this->title_code, TRUE);
+            $criteria->compare('name', $this->name, TRUE);
+            $criteria->compare('thumb', $this->thumb, TRUE);
+            $criteria->compare('chapter_id', $this->chapter_id);
+            $criteria->compare('subject_id', $this->subject_id);
+            $criteria->compare('class_id', $this->class_id);
+            $criteria->compare('created', $this->created, TRUE);
+            $criteria->compare('status', $this->status);
 
             return new CActiveDataProvider($this, array(
                 'criteria' => $criteria,
@@ -93,10 +110,21 @@
          *
          * @param string $className active record class name.
          *
-         * @return Category the static model class
+         * @return Videos the static model class
          */
         public static function model($className = __CLASS__)
         {
             return parent::model($className);
+        }
+        /**
+         * Get image url
+         *
+         * @return string
+         */
+        public function getImageUrl()
+        {
+            $dir_root = '../';
+
+            return ($this->thumb != '' && file_exists($dir_root . $this->thumb)) ? CHtml::image($dir_root . $this->thumb, $this->name, array("width" => "100", "height" => "60", "title" => $this->name)) : CHtml::image(Yii::app()->theme->baseUrl . "/images/no_img.png", "", array("width" => "100", "height" => "60", "title" => ""));
         }
     }

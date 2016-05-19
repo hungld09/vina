@@ -48608,3 +48608,996 @@ Stack trace:
 REQUEST_URI=/hocde.vina/themes/advanceimages/can.png
 HTTP_REFERER=http://localhost/hocde.vina/site
 ---
+2016/05/19 15:09:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:09:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/img/upload.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/img/upload.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:09:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:10:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub.url_avatar' in 'field list'. The SQL statement executed was: select cm.*,cm.subscriber_id, sub.id, cm.id, sub.url_avatar, sub.lastname, sub.password, sub.firstname from comment cm join subscriber sub on cm.subscriber_id = sub.id where cm.question_id=1921 order by cm.id desc.
+in D:\xampp\htdocs\vhocde\protected\controllers\QuestionController.php (328)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 15:10:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub.url_avatar' in 'field list'. The SQL statement executed was: select cm.*,cm.subscriber_id, sub.id, cm.id, sub.url_avatar, sub.lastname, sub.password, sub.firstname from comment cm join subscriber sub on cm.subscriber_id = sub.id where cm.question_id=1921 order by cm.id desc' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\vhocde\protected\controllers\QuestionController.php(328): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\actions\CInlineAction.php(49): QuestionController->actionLoadComment()
+#3 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('loadComment')
+#7 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('question/loadCo...')
+#8 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/vhocde/question/loadComment
+HTTP_REFERER=http://localhost/vhocde/question/1921
+---
+2016/05/19 15:10:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub.url_avatar' in 'field list'. The SQL statement executed was: select cm.*,cm.subscriber_id, sub.id, cm.id, sub.url_avatar, sub.lastname, sub.password, sub.firstname from comment cm join subscriber sub on cm.subscriber_id = sub.id where cm.question_id=1931 order by cm.id desc.
+in D:\xampp\htdocs\vhocde\protected\controllers\QuestionController.php (328)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 15:10:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub.url_avatar' in 'field list'. The SQL statement executed was: select cm.*,cm.subscriber_id, sub.id, cm.id, sub.url_avatar, sub.lastname, sub.password, sub.firstname from comment cm join subscriber sub on cm.subscriber_id = sub.id where cm.question_id=1931 order by cm.id desc' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\vhocde\protected\controllers\QuestionController.php(328): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\actions\CInlineAction.php(49): QuestionController->actionLoadComment()
+#3 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('loadComment')
+#7 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('question/loadCo...')
+#8 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/vhocde/question/loadComment
+HTTP_REFERER=http://localhost/vhocde/question/1931
+---
+2016/05/19 15:10:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:13:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:13:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:13:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:14:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:14:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:14:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:14:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:14:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:14:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/site
+---
+2016/05/19 15:14:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:14:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:14:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:15:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:15:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:15:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+---
+2016/05/19 15:28:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:28:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:28:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:28:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:28:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+---
+2016/05/19 15:30:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:30:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 15:30:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:32:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:32:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 15:32:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:32:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:32:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 15:32:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:35:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:35:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 15:35:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:35:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:35:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 15:35:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:37:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:37:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:37:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:37:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:39:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:40:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:40:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:40:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:41:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 15:41:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:41:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+---
+2016/05/19 15:41:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:41:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:42:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:42:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:42:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 15:46:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:03:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:03:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:03:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:03:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:04:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:04:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:07:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:07:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:08:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:08:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:08:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:08:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:08:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:11:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:11:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:12:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:12:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:15:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:15:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+HTTP_REFERER=http://localhost/vhocde/themes/advance/css/vina/styles.css
+---
+2016/05/19 16:15:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advance/css/images/arrow.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advance/...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advance/css/images/arrow.png
+---
+2016/05/19 16:22:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:22:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:22:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:24:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:24:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:24:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:27:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:27:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:27:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:30:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:30:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:30:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:31:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub.url_avatar' in 'field list'. The SQL statement executed was: select cm.*,cm.subscriber_id, sub.id, cm.id, sub.url_avatar, sub.lastname, sub.password, sub.firstname from comment cm join subscriber sub on cm.subscriber_id = sub.id where cm.question_id=1922 order by cm.id desc.
+in D:\xampp\htdocs\vhocde\protected\controllers\QuestionController.php (328)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 16:31:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub.url_avatar' in 'field list'. The SQL statement executed was: select cm.*,cm.subscriber_id, sub.id, cm.id, sub.url_avatar, sub.lastname, sub.password, sub.firstname from comment cm join subscriber sub on cm.subscriber_id = sub.id where cm.question_id=1922 order by cm.id desc' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\vhocde\protected\controllers\QuestionController.php(328): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\actions\CInlineAction.php(49): QuestionController->actionLoadComment()
+#3 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('loadComment')
+#7 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('question/loadCo...')
+#8 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/vhocde/question/loadComment
+HTTP_REFERER=http://localhost/vhocde/question/1922
+---
+2016/05/19 16:37:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:37:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:37:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:39:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+HTTP_REFERER=http://localhost/vhocde/
+---
+2016/05/19 16:41:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:41:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:42:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:42:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:42:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/advanceimages/can.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/advancei...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/advanceimages/can.png
+---
+2016/05/19 16:51:54 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub.url_avatar' in 'field list'. The SQL statement executed was: select cm.*,cm.subscriber_id, sub.id, cm.id, sub.url_avatar, sub.lastname, sub.password, sub.firstname from comment cm join subscriber sub on cm.subscriber_id = sub.id where cm.question_id=1815 order by cm.id desc.
+in D:\xampp\htdocs\vhocde\protected\controllers\QuestionController.php (328)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 16:51:54 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub.url_avatar' in 'field list'. The SQL statement executed was: select cm.*,cm.subscriber_id, sub.id, cm.id, sub.url_avatar, sub.lastname, sub.password, sub.firstname from comment cm join subscriber sub on cm.subscriber_id = sub.id where cm.question_id=1815 order by cm.id desc' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\vhocde\protected\controllers\QuestionController.php(328): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\actions\CInlineAction.php(49): QuestionController->actionLoadComment()
+#3 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(282): CController->run('loadComment')
+#7 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('question/loadCo...')
+#8 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#10 {main}
+REQUEST_URI=/vhocde/question/loadComment
+HTTP_REFERER=http://localhost/vhocde/question/1815
+---
+2016/05/19 17:10:15 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\vhocde\protected\components\Controller.php:99)
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CWebApplication->run()
+REQUEST_URI=/vhocde/
+in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 17:10:33 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\vhocde\protected\components\Controller.php:99)
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CWebApplication->run()
+REQUEST_URI=/vhocde/
+in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 17:10:35 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\vhocde\protected\components\Controller.php:99)
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CWebApplication->run()
+REQUEST_URI=/vhocde/
+in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 17:10:37 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\vhocde\protected\components\Controller.php:99)
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CWebApplication->run()
+REQUEST_URI=/vhocde/
+in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 17:10:38 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\vhocde\protected\components\Controller.php:99)
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CWebApplication->run()
+REQUEST_URI=/vhocde/
+in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 17:10:40 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\vhocde\protected\components\Controller.php:99)
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CWebApplication->run()
+REQUEST_URI=/vhocde/
+in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 17:10:40 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\vhocde\protected\components\Controller.php:99)
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CWebApplication->run()
+REQUEST_URI=/vhocde/
+in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
+in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/19 17:11:21 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\vhocde\protected\components\Controller.php:99)
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CWebApplication->run()
+REQUEST_URI=/vhocde/
+in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
+in D:\xampp\htdocs\vhocde\index.php (14)
