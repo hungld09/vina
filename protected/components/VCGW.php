@@ -56,7 +56,6 @@ class VCGW
     */
     function debitAccount($transaction_id, $msisdn, $have_promotion, $debit_amount, $original_price, $reason, $note = "", $channel = CHANNEL_TYPE_WAP)
     {
-
         if ($have_promotion) {
             $promotion = 1;
         } else {
@@ -75,19 +74,19 @@ class VCGW
         Yii::log("debug VCWG:debitAccount2 msisdn = $msisdn\n");
         $requestid = Date('ymdHis');
         Yii::log("debug VCWG:debitAccount2 requestId = $requestid\n");
-        if ($reason == ChargingProxy_test::CHARGING_REGISTER) {
+        if ($reason == ChargingProxy::CHARGING_REGISTER) {
             $subscribe = 'subscribe';
-        } elseif ($reason == ChargingProxy_test::CHARGING_CANCEL) {
+        } elseif ($reason == ChargingProxy::CHARGING_CANCEL) {
             $subscribe = 'unsubscribe';
         }
-        $service = 'VFILM';
-        $package = 'VFILM';
-        $application = 'CP_NAMVIET';
+        $service = 'HD';
+        $package = 'HD';
+        $application = 'CP_SCT';
         $policy = '';
         Yii::log("debug Start xml data param  = $user_name, $user_ip, $transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $reason, $trial, $bundle , $note, $channel, $subscribe\n");
-        if ($reason == ChargingProxy_test::CHARGING_REGISTER) {
+        if ($reason == ChargingProxy::CHARGING_REGISTER) {
             $xml_data = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?><RQST><name>' . $subscribe . '</name><requestid>' . $transaction_id . '</requestid><msisdn>' . $msisdn . '</msisdn><service>' . $service . '</service><package>' . $package . '</package><promotion>' . $promotion . '</promotion><trial>' . $trial . '</trial><bundle>' . $bundle . '</bundle><note>' . $note . '</note><application>' . $application . '</application><channel>' . $channel . '</channel><username>' . $user_name . '</username><userip>' . $user_ip . '</userip></RQST>';
-        } elseif ($reason == ChargingProxy_test::CHARGING_CANCEL) {
+        } elseif ($reason == ChargingProxy::CHARGING_CANCEL) {
             $xml_data = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?><RQST><name>' . $subscribe . '</name><requestid>' . $transaction_id . '</requestid><msisdn>' . $msisdn . '</msisdn><service>' . $service . '</service><package>' . $package . '</package><policy>' . $policy . '</policy><note>' . $note . '</note><application>' . $application . '</application><channel>' . $channel . '</channel><username>' . $user_name . '</username><userip>' . $user_ip . '</userip></RQST>';
         }
         Yii::log("debug REQUEST: " . $xml_data);

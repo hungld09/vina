@@ -263,9 +263,6 @@ class Subscriber extends CActiveRecord
 		if ($service != null) {
 			$subscriberTransaction->service_id = $service->id;
 		}
-		if ($asset != null) {
-			$subscriberTransaction->vod_asset_id = $asset->id;
-		}
 		if($user_name != null) {
 			$subscriberTransaction->vnp_username = $user_name;
 		}
@@ -284,18 +281,12 @@ class Subscriber extends CActiveRecord
 				$subscriberTransaction->description = isset($service) ? $service->display_name : "";
 			}
 			$subscriberTransaction->cost = isset($service) ? $service->price : 0;
-		} else if ($using_type == 2) { // mua phim
-			$subscriberTransaction->description = "Phim" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
+		} else if ($using_type == 2) { // mua le
+			$subscriberTransaction->description = "HD" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
 			$subscriberTransaction->cost = isset($asset) ? $asset->price : 0;
-		} else if ($using_type == 3) { // tai phim
-			$subscriberTransaction->description = "Phim" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
-			$subscriberTransaction->cost = isset($asset) ? $asset->price_download : 0;
 		} else if ($using_type == 4) { // tang phim
-			$subscriberTransaction->description = "Phim" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
+			$subscriberTransaction->description = "HD" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
 			$subscriberTransaction->cost = isset($asset) ? $asset->price_gift : 0;
-		} else if ($using_type == USING_TYPE_RECEIVE_GIFT) { // duoc tang phim
-			$subscriberTransaction->description = "Phim" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
-			$subscriberTransaction->cost = 0;
 		} else if ($using_type == USING_TYPE_CHARGING_SMS){
 			$subscriberTransaction->cost = 100;
 			$subscriberTransaction->description = "sms";
@@ -312,7 +303,7 @@ class Subscriber extends CActiveRecord
 	
 		//TODO:event_id dung lam gi?
 		//$subscriberTransaction->event_id = '';
-		$subscriberTransaction->using_type = $using_type;//0: mua dich vu, 1: mua phim, 2: tai phim, 3: tang phim
+		$subscriberTransaction->using_type = $using_type;//0: mua dich vu, 1: mua cau hoi, 
 		$subscriberTransaction->purchase_type = $purchase_type; //0: mua moi, 1: gia han, 2: chu dong huy, 3: bi huy
 		$subscriberTransaction->save();
 	
@@ -479,10 +470,7 @@ class Subscriber extends CActiveRecord
 		$subscriberService->create_date = $aDate->format("Y-m-d H:i:s");
 		$subscriberService->is_deleted = 0;
 		$subscriberService->view_count = 0;
-		$subscriberService->download_count = 0;
-		$subscriberService->gift_count = 0;
 		$subscriberService->partner_id = $partner_id;
-		$subscriberService->watching_time = $service->free_duration;
 		$subscriberService->sent_notification = 0;
 		$subscriberService->save();
 	
@@ -492,8 +480,8 @@ class Subscriber extends CActiveRecord
 	public function cancelService($smap, $channel_type, $requestid = -1, $description="", $username=null, $userip=null) {
 		$transaction = $this->newTransaction($channel_type, USING_TYPE_CANCEL, SubscriberTransaction::PURCHASE_TYPE_CANCEL, $smap->service);
 		$chargingResult = 'UNKNOWN';
-		$chargingResult = ChargingProxy::chargingCancel($this->subscriber_number, $smap->service, $transaction->id, $channel_type);
-		if(($chargingResult == CPS_OK) || ($chargingResult == '11') || ($chargingResult == '6')) {
+		$chargingResult = ChargingProxy::chargingCancel($username, $userip, $this->subscriber_number, $smap->service, $transaction->id, $channel_type);
+		if($chargingResult == CPS_OK) {
 			$smap->is_active = ServiceSubscriberMapping::SERVICE_STATUS_INACTIVE;
 			$smap->is_deleted = 1;
 			$smap->modify_date = new CDbExpression('NOW()');

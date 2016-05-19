@@ -47,7 +47,7 @@ class SubscriberTransaction extends CActiveRecord
 			array('description', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_date, issuer, card_seria, card_code, error_code, partner_id, oncash, status, description, subscriber_id, purchase_type', 'safe', 'on'=>'search'),
+			array('id, create_date, issuer, vnp_username, vnp_ip, card_seria, card_code, error_code, partner_id, oncash, status, description, subscriber_id, purchase_type', 'safe', 'on'=>'search'),
 		);
 	}
 

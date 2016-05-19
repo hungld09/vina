@@ -189,7 +189,7 @@ class TelcoController extends CController
         if ($receiverNumber == '') {
             $this->responseError(1, "Số điện thoại người nhận không hợp lệ");
         }
-
+        
         $receiver = Subscriber::newSubscriber($receiverNumber);
         $service = Service::model()->findByAttributes(array('is_active' => 1));
 
@@ -264,8 +264,8 @@ class TelcoController extends CController
         IP của người dùng thao tác (thao tác viên, để log không dùng để xác thực)
         ?requestid=1&msisdn=84916731158&packagename=VFILM&promotion=1w&trial=0&bundle=1&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1
         3.1
-            http://hocde.vn/api/telco/registerService?requestid=1&msisdn=84916731158&packagename=VFILM&promotion=1w&trial=1w&bundle=1&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1 */
-    public function actionRegisterService($requestid = null, $msisdn = null, $packagename = VFILM, $promotion = null, $trial = null, $bundle = null, $note = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
+        http://hocde.vn/api/telco/registerService?requestid=1&msisdn=84916731158&packagename=VFILM&promotion=1w&trial=1w&bundle=1&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1 */
+    public function actionRegisterService($requestid = null, $msisdn = null, $packagename = 'HD', $promotion = null, $trial = null, $bundle = null, $note = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
     {
 // 		Yii::log("*** 1 *** ".microtime());
         Yii::log("TestVtv ***:  requestid:" . $requestid . "|msisdn: " .$msisdn ."|packagename: ". $packagename ."|promotion". $promotion ."|trial: ". $trial ."|bundle: ". $bundle ."|note". $note ."|application: ". $application ."|channel: ". $channel ."|username: ". $username ."|userip: ". $userip ." *** ");
@@ -299,32 +299,12 @@ class TelcoController extends CController
             if ($subscriber == NULL) {
                 throw new Exception("Loi he thong - tao thue bao $msisdn loi");
             }
-            if (isset($note)) {
-                $aDate = new DateTime();
-                $mo = explode('|', $note);
-                Yii::log("TelcoController *** " . $mo . " *** ");
-                if (trim($mo[0]) == 'MO') {
-                    $mt = new SmsMessage();
-                    $mt->type = $mo[0];
-                    $mt->source = $mo[3];
-                    $mt->destination = $mo[2];
-                    $mt->message = $mo[1];
-                    $mt->received_time = $aDate->format('Y-m-d H:i:s');
-                    $mt->sending_time = $aDate->format('Y-m-d H:i:s');
-                    if (isset($response) && isset($response->body)) {
-                        $mt->mt_status = $response->body;
-                    }
-                    if (isset($subscriber))
-                        $mt->subscriber_id = $subscriber->id;
-                    $mt->save();
-                }
-            }
-// 			Yii::log("*** 2 *** ".microtime());
+//          Yii::log("*** 2 *** ".microtime());
             /* @var $ssm ServiceSubscriberMapping */
             $ssm = NULL;
             if ($subscriber->isUsingService()) {
                 if ($subscriber->auto_recurring == 0) {
-// 					thue bao dang ky roi nhu ko tu dong gia han. Sua lai thanh tu dong gia han
+// 		    thue bao dang ky roi nhu ko tu dong gia han.   
                     $subscriber->auto_recurring = 1;
                     $subscriber->update();
                     $registerResult = 2;
@@ -334,20 +314,11 @@ class TelcoController extends CController
                     throw new Exception("Thue bao da dang ky roi");
                 }
             }
-// 			Yii::log("*** 3 *** ".microtime());
+// 	    Yii::log("*** 3 *** ".microtime());
             $service = Service::model()->findByAttributes(array('is_active' => 1));
 
             //uu tien trial truoc, promotion sau
             $cost = $service->price;
-
-// 			if($bundle == 1) { *** VNP ko yeu cau param nay nua
-// 				$cost = 0;
-// 				$subscriber->auto_recurring = 0;
-// 				$subscriber->update();
-// 			}
-
-            //TODO: xu ly the nao voi $application. Tam thoi luu vao description cua ssm
-// 			Yii::log("*** 4 *** ".microtime());
             $trial_days = 0;
             $using_days = 0;
             $continueCheck = true;
@@ -371,7 +342,7 @@ class TelcoController extends CController
                     }
                 }
             }
-            $isRegisteredInThreeMonth = ServiceSubscriberMapping::model()->isRegisteredInThreeMonth($subscriber->id);
+//            $isRegisteredInThreeMonth = ServiceSubscriberMapping::model()->isRegisteredInThreeMonth($subscriber->id);
             if ($trial_days == 0 && $using_days == 0) {
                 //$number_day = $service->using_days;
                 $number_day = 1;
@@ -379,7 +350,7 @@ class TelcoController extends CController
                 $number_day = $trial_days > 0 ? $trial_days : $using_days;
             }
 
-            if ($subscriber->status == Subscriber::STATUS_WHITE_LIST || !$isRegisteredInThreeMonth) {
+            if ($subscriber->status == Subscriber::STATUS_WHITE_LIST) {
                 $cost = 0;
             }
             $isFirstUse = false;
@@ -388,7 +359,6 @@ class TelcoController extends CController
                     $cost = 0;
                 }
             }
-
             if ($channel == CHANNEL_TYPE_ADMIN){
                 $cost = 0;
             }
@@ -397,46 +367,30 @@ class TelcoController extends CController
                 $isFirstUse = true;
                 $isPromotionTrans = true;
             }
-
-// 			Yii::log("*** 5 *** ".microtime());
+// 	    Yii::log("*** 5 *** ".microtime());
             Yii::log("newTransaction actionRegisterService subscriber_number: " . $msisdn . "channel_type" . $channel);
             if ($channel != CHANNEL_TYPE_ADMIN){
                 $trans = $subscriber->newTransaction($channel, USING_TYPE_REGISTER, PURCHASE_TYPE_NEW, $service, null, null);
             }else{
                 $trans = new SubscriberTransaction();
             }
-
             $trans->req_id = $requestid;
             if ($trans->cost != $cost) {
                 $trans->cost = $cost;
             }
-// 			Yii::log("*** 6 *** ".microtime());
+// 	    Yii::log("*** 6 *** ".microtime());
             $freeFor1stTimeByVnp = false;
             $freeFor1day = false;
-
-
             $chargingResult = CPS_OK;
             if ($isPromotionTrans) {
-//				if($subscriber->id == 491006 || $subscriber->id == 240){
-//                    $freeFor1day = true;
-//					$c_response = ChargingProxy_test::chargingRegister2($username, $userip, $msisdn, $service, $trans->id, $promotion, 0, $trial, $bundle, $channel, $note);
-//					$chargingResult = $c_response->error;
-//				} else {
                 if ($channel != CHANNEL_TYPE_ADMIN){
-                    $chargingResult = ChargingProxy::chargingPromotionRegister($msisdn, $service, $trans->id, 0, $channel, $note);
+                    $chargingResult = ChargingProxy::chargingPromotionRegister($username, $userip, $msisdn, $service, $trans->id, 0, $channel, $note);
                 }else{
-                    $chargingResult = ChargingProxy::chargingPromotionRegister($msisdn, $service, time(), 0, $channel, $note);
+                    $chargingResult = ChargingProxy::chargingPromotionRegister($username, $userip, $msisdn, $service, time(), 0, $channel, $note);
                 }
-//				}
             } else {
-//				$chargingResult = ChargingProxy::chargingRegister($msisdn, $service, $trans->id, false, intval($trans->cost), $channel, $note);
-//				if($subscriber->id == 491006 || $subscriber->id == 240){
-//					$c_response = ChargingProxy_test::chargingRegister2($username, $userip, $msisdn, $service, $trans->id, $promotion, intval($trans->cost), $trial, $bundle, $channel, $note);
-//					$chargingResult = $c_response->error;
-//				} else {
-                $c_response = ChargingProxy::chargingRegister2($msisdn, $service, $trans->id, false, intval($trans->cost), $channel, $note);
+                $c_response = ChargingProxy::chargingRegister($username, $userip, $msisdn, $service, $trans->id, false, intval($trans->cost), $channel, $note);
                 $chargingResult = $c_response->return;
-//				}
                 if (isset($c_response->promotion) && isset($c_response->note) && isset($c_response->price) &&
                     $c_response->promotion == '1' && $c_response->price == '0' && $c_response->note == 'BIG032014'
                 ) {
@@ -446,37 +400,6 @@ class TelcoController extends CController
 // 			Yii::log("*** 7 *** ".$chargingResult);
             $trans->error_code = $chargingResult;
             $isChargingSuccess = false;
-
-//			if($subscriber->id == 491006 || $subscriber->id == 240){
-//				if($chargingResult == CPS_OK || $chargingResult == CPS_OK_3 || $chargingResult == CPS_OK_4 || $chargingResult == CPS_OK_6 || $chargingResult == CPS_OK_7 || $chargingResult == CPS_OK_8) {
-//					if($registerResult != 2) { //khong phai truong hop: dky roi, dang ko tu dong gia han, dky lai va cho tu dong gia han
-//						if($cost > 0) {
-//							$registerResult = 4; //dky thanh cong va bi tru cuoc
-//						}
-//						else if($cost == 0) {
-//							$registerResult = 3; //dky thanh cong va khong bi tru cuoc
-//						}
-//						else {
-//							$registerResult = 0;
-//						}
-//					}
-//					$trans->status = 1;
-//
-//					if ($freeFor1stTimeByVnp || $isRegisteredInThreeMonth == false){
-//
-//						$mtMessage = $this->getMTContent(self::ACTION_REGISTER, $application, true, $number_day);
-//						$registerResult = 3; //dky thanh cong va khong bi tru cuoc
-//						$trans->cost = 0;
-//					} else {
-//						$mtMessage = $this->getMTContent(self::ACTION_REGISTER, $application, $isFirstUse, $number_day);
-//					}
-//
-//					if($application != 'IOS') {
-//						$res = VinaphoneController::sendSms($msisdn, $mtMessage);
-//					}
-//			}
-//			}else
-
             if ($chargingResult == CPS_OK || $chargingResult == CPS_OK_11) {
                 if ($registerResult != 2) { //khong phai truong hop: dky roi, dang ko tu dong gia han, dky lai va cho tu dong gia han
                     if ($cost > 0) {
@@ -489,8 +412,8 @@ class TelcoController extends CController
                 }
                 $trans->status = 1;
                 //dang ky qua channel CSKH-ADMIN thi khong delay sms -> ko gui sms
-                if ($application != 'IOS' && $channel != CHANNEL_TYPE_ADMIN) {
-                    if ($freeFor1stTimeByVnp || $isRegisteredInThreeMonth == false) {
+                if ($channel != CHANNEL_TYPE_ADMIN) {
+                    if ($freeFor1stTimeByVnp) {
                         $mtMessage = $this->getMTContent(self::ACTION_REGISTER, $application, true, $number_day, $subscriber->id);
                         $registerResult = 3; //dky thanh cong va khong bi tru cuoc
                         $trans->cost = 0;
@@ -498,7 +421,7 @@ class TelcoController extends CController
                         $mtMessage = $this->getMTContent(self::ACTION_REGISTER, $application, $isFirstUse, $number_day, $subscriber->id);
                     }
                 }else{
-                    if ($freeFor1stTimeByVnp || $isRegisteredInThreeMonth == false) {
+                    if ($freeFor1stTimeByVnp) {
                         $registerResult = 3; //dky thanh cong va khong bi tru cuoc
                         $trans->cost = 0;
                     }
@@ -542,19 +465,15 @@ class TelcoController extends CController
                 }
 
             }
-//            if ($subscriber->id == 240) {
-//                Yii::log("requestid2 *** 1" . $requestid . " *** ");
-                $subActivityLog = SubscriberActivityLog::model()->findByPk($requestid);
-
-                if ($subActivityLog != null) {
-//                    Yii::log("requestid2 *** 2" . $requestid . " *** ");
-                    $subActivityLog->status = 1;
-                    $subActivityLog->save();
-                }
+//                $subActivityLog = SubscriberActivityLog::model()->findByPk($requestid);
+//
+//                if ($subActivityLog != null) {
+////                    Yii::log("requestid2 *** 2" . $requestid . " *** ");
+//                    $subActivityLog->status = 1;
+//                    $subActivityLog->save();
+//                }
 //            }
-// 			Yii::log("*** 10 *** ".microtime());
             $continueCheck = true; //neu VNP truyen tham so trial (!= 0) roi thi khong tiep tuc check tham so promotion nua
-//            if($subscriber->id == 491006 || $subscriber->id == 240){
             if ($freeFor1day && $channel != CHANNEL_TYPE_ADMIN) {
                 $continueCheck = false;
                 $ssm->expiry_date = date('Y-m-d 23:59:59');
@@ -578,26 +497,6 @@ class TelcoController extends CController
                     }
                 }
             }
-//            }else{
-//                if(isset($trial)) {
-//                    if($trial_days > 0) {
-//                        $continueCheck = false;
-//                        $ssm->expiry_date = date('Y-m-d 00:00:00', time() + $trial_days*86400);
-//                        $ssm->update();
-//                    }
-//                }
-//                if($continueCheck) {
-//                    Yii::log("ko co trial");
-//                    if(isset($promotion)) {
-//                        if($using_days > 0) {
-//                            $ssm->expiry_date = date('Y-m-d 00:00:00', time() + $using_days*86400);
-//                            $ssm->sent_notification = 1;
-//                            $ssm->update();
-//                        }
-//                    }
-//                }
-//            }
-
             $this->responseError($registerResult, $this->getRegisterErrorMsg($registerResult));
         } catch (Exception $e) {
             Yii::log("Exception: " . $e->getMessage());
@@ -624,9 +523,6 @@ class TelcoController extends CController
                 return $num;
             case 'w':
                 return $num * 7;
-            case 'm':
-                $nextNumMonthTs = strtotime("+$num months", 0);
-                return $nextNumMonthTs / 86400;
             default:
                 return 0;
         }
@@ -643,8 +539,8 @@ class TelcoController extends CController
 
         //TODO: authen, session, error handle
         $root = $xmlDoc->appendChild($xmlDoc->createElement("response"));
-        $root->appendChild($xmlDoc->createElement("error_no", $error_no));
-        $root->appendChild($xmlDoc->createElement("error_desc", CHtml::encode($message)));
+        $root->appendChild($xmlDoc->createElement("errorid", $error_no));
+        $root->appendChild($xmlDoc->createElement("errordesc", CHtml::encode($message)));
 
         echo $xmlDoc->saveXML();
         Yii::app()->end();
@@ -659,9 +555,9 @@ class TelcoController extends CController
 
         //TODO: authen, session, error handle
         $root = $xmlDoc->appendChild($xmlDoc->createElement("response"));
+        $root->appendChild($xmlDoc->createElement("errorid", $error_no));
+        $root->appendChild($xmlDoc->createElement("errordesc", CHtml::encode($message)));
         $root->appendChild($xmlDoc->createElement("status", $status));
-        $root->appendChild($xmlDoc->createElement("error_no", $error_no));
-        $root->appendChild($xmlDoc->createElement("error_desc", CHtml::encode($message)));
         if ($packagename != NULL) {
             $root->appendChild($xmlDoc->createElement("packagename", CHtml::encode($packagename)));
         }
@@ -696,7 +592,7 @@ class TelcoController extends CController
             case 0:
                 return "Đăng ký thành công dịch vụ";
             case 1:
-                return "Thuê bao này đã tồn tại";
+                return "Thuê bao đã đăng ký gói dịch vụ này trước đó và đang sử dụng";
             case 2:
                 return "Đăng ký rồi và đăng ký lại dịch vụ";
             case 3:
@@ -775,144 +671,64 @@ class TelcoController extends CController
     }
 
     private function getMTContent($action, $application, $isFirstUse = false, $day = 7, $subscriberId = null)
-    { //tuy theo action & application goi api ma co noi dung MT khac nhau
-        $times = false;
-        $stardate = strtotime(date('Y-m-d 07:00:00'));
-        $enddate = strtotime(date('Y-m-d 17:30:59'));
-        if((strtotime(date('Y-m-d H:i:s')) > $stardate) && strtotime(date('Y-m-d H:i:s')) < $enddate){
-            $times = true;
-        }
+    { 
         switch ($action) {
             case self::ACTION_REGISTER:
                 switch ($application) {
-// 					MOBILE_ADS hoặc VASPORTAL thì hoặc VASDEALER:
+//              MOBILE_ADS hoặc VASPORTAL thì hoặc VASDEALER:
                     case self::ACTION_REGISTER_TEST:
                         if ($isFirstUse) {
                             if ($day == 1) {
-                                if($times == true){
-                                    $mtMessage = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms1 = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                                }else{
-                                    $mtMessage = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms1 = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                                }
+                                $mtMessage = "Quy Khach da DK thanh cong DV goi ngay Hoc De, Quy Khach duoc xem khong gioi han loi giai SGK&SBT, tong hop cac video bai giang, luyen thi voi ngan hang de. Quy Khach duoc 1 ngay trai nghiem DV. Het thoi han mien cuoc, cuoc DV 2000d/ngay, DV se duoc tu dong gia han. De huy soan HUY HDD gui 9073.";
                             } else {
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
+                                $mtMessage = "Quy Khach da DK thanh cong DV goi tuan Hoc De, Quy Khach co 3 cau hoi mien phi, duoc xem khong gioi han loi giai SGK&SBT, tong hop cac video bai giang, luyen thi voi ngan hang de su dung trong 7 ngay. Cuoc 10000d/tuan, DV se duoc tu dong gia han. De huy soan HUY HDW gui 9073.";
                             }
                         } else {
-                            if($times == true){
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms1 = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                            }else{
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms1 = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                            }
-                        }
-                        break;
-                    case self::APPLICATION_MOBILE_ADS:
-                        if ($isFirstUse) {
                             if ($day == 1) {
-                                if($times == true){
-                                    $mtMessage = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms1 = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                                }else{
-                                    $mtMessage = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms1 = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                                }
+                                $mtMessage = "Quy Khach da DK thanh cong DV goi ngay Hoc De, Quy Khach duoc xem khong gioi han loi giai SGK&SBT, tong hop cac video bai giang, luyen thi voi ngan hang de su dung trong 24h. Cuoc 2000d/ngay, DV se duoc tu dong gia han. De huy soan HUY HDD gui 9073";
                             } else {
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                            }
-                        } else {
-                            if($times == true){
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms1 = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                            }else{
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms1 = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                            }
-                        }
-                        break;
-                    case self::APPLICATION_VASPORTAL:
-                    case self::APPLICATION_VASDEALER:
-                        if ($isFirstUse) {
-                            if ($day == 1) {
-                                $mtMessage = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay dau tien trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han.Quy khach vui long truy cap http://hocde.vn de thuong thuc hang nghin bo phim hap dan MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan Huy gui 1579.";
-                            } else {
-                                $mtMessage = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi $day ngay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han.Quy khach vui long truy cap http://hocde.vn de thuong thuc hang nghin bo phim hap dan MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan Huy gui 1579.";
-                            }
-                        } else {
-                            $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan H gui 1579.";
-                        }
-                        break;
-                    case self::APPLICATION_CCOS:
-                        if ($isFirstUse) {
-                            if ($day == 1) {
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong dich vu vFilm qua he thong Cham soc khach hang cua VinaPhone. Quy Khach duoc mien phi ngay dau tien trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                            } else {
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong dich vu vFilm qua he thong Cham soc khach hang cua VinaPhone. Quy Khach duoc mien phi $day ngay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                            }
-                        } else {
-                            $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong dich vu vFilm qua he thong Cham soc khach hang cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han. De huy dich vu, Quy Khach vui long soan HUY gui 1579.";
+                                $mtMessage = "Quy Khach da DK thanh cong DV goi tuan Hoc De, Quy Khach co 3 cau hoi mien phi, duoc xem khong gioi han loi giai SGK&SBT, tong hop cac video bai giang, luyen thi voi ngan hang de su dung trong 7 ngay. Cuoc 10000d/tuan, DV se duoc tu dong gia han. De huy soan HUY HDW gui 9073.";
+                            } 
                         }
                         break;
                     default:
                         if ($isFirstUse) {
                             if ($day == 1) {
-                                if($times == true){
-                                    $mtMessage = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms1 = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                                }else{
-                                    $mtMessage = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms1 = "Chuc mung Quy khach da dang ky thanh cong dich vu xem phim tren di dong vFilm cua VinaPhone. Quy khach duoc mien phi ngay hom nay trai nghiem dich vu vFilm. Sau khi het thoi han mien cuoc, VinaPhone se tinh cuoc dich vu 10.000d/tuan va dich vu se duoc tu dong gia han. Quy khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. De huy dich vu, Quy khach vui long soan HUY gui 1579.";
-                                    $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                                }
+                                $mtMessage = "Quy Khach da DK thanh cong DV goi ngay Hoc De, Quy Khach duoc xem khong gioi han loi giai SGK&SBT, tong hop cac video bai giang, luyen thi voi ngan hang de. Quy Khach duoc 1 ngay trai nghiem DV. Het thoi han mien cuoc, cuoc DV 2000d/ngay, DV se duoc tu dong gia han. De huy soan HUY HDD gui 9073.";
                             } else {
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
+                                $mtMessage = "Quy Khach da DK thanh cong DV goi tuan Hoc De, Quy Khach co 3 cau hoi mien phi, duoc xem khong gioi han loi giai SGK&SBT, tong hop cac video bai giang, luyen thi voi ngan hang de su dung trong 7 ngay. Cuoc 10000d/tuan, DV se duoc tu dong gia han. De huy soan HUY HDW gui 9073.";
                             }
                         } else {
-                            if($times == true){
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms1 = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                            }else{
-                                $mtMessage = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms1 = "Chuc mung Quy Khach da dang ky thanh cong goi dich vu vFilm cua VinaPhone. Quy Khach vui long truy cap http://hocde.vn/ de thuong thuc hang nghin bo phim hap dan, MIEN PHI CUOC 3G/GPRS. Gia cuoc 10.000d/tuan, dich vu se duoc tu dong gia han hang tuan. De huy dich vu, Quy Khach vui long soan Huy gui 1579.";
-                                $delaySms2 = "Quy khach dang duoc xem hang ngan bo phim hanh dong dac sac, phim tam ly tinh cam, phim hai vui nhon, phim kiem hiep, phim vo thuat, phim kinh dien va nhung bo phim an khach nhat 2014 HOAN TOAN MIEN PHI CUOC 3G/GPRS. Truy cap http://hocde.vn de xem ngay.";
-                            }
+                            if ($day == 1) {
+                                $mtMessage = "Quy Khach da DK thanh cong DV goi ngay Hoc De, Quy Khach duoc xem khong gioi han loi giai SGK&SBT, tong hop cac video bai giang, luyen thi voi ngan hang de su dung trong 24h. Cuoc 2000d/ngay, DV se duoc tu dong gia han. De huy soan HUY HDD gui 9073";
+                            } else {
+                                $mtMessage = "Quy Khach da DK thanh cong DV goi tuan Hoc De, Quy Khach co 3 cau hoi mien phi, duoc xem khong gioi han loi giai SGK&SBT, tong hop cac video bai giang, luyen thi voi ngan hang de su dung trong 7 ngay. Cuoc 10000d/tuan, DV se duoc tu dong gia han. De huy soan HUY HDW gui 9073.";
+                            } 
                         }
                         break;
                 }
                 break;
             case self::ACTION_CANCEL:
-                $mtMessage = "Quy Khach da huy thanh cong dich vu vFilm. De dang ky lai dich vu, Quy Khach vui long soan DK gui 1579. Cam on Quy Khach da su dung dich vu cua VinaPhone.";
+                $mtMessage = "Quy Khach da huy thanh cong dich vu goi ngay Hoc De. De dang ky lai dich vu, Quy Khach vui long soan HDD gui 9073. Cam on Quy Khach da su dung dich vu.";
                 break;
         }
-        if($subscriberId == null){//check ảo để ko delay sms nua.
-            if(isset($delaySms1) && isset($delaySms2)){
-                if($subscriberId != null){
-                    $inse = SmsQueue::insertDelaySms($subscriberId, $delaySms1);
-                    $inse = SmsQueue::insertDelaySms($subscriberId, $delaySms2);
-                }
-            }
-        }
+//        if($subscriberId == null){//check ảo để ko delay sms nua.
+//            if(isset($delaySms1) && isset($delaySms2)){
+//                if($subscriberId != null){
+//                    $inse = SmsQueue::insertDelaySms($subscriberId, $delaySms1);
+//                    $inse = SmsQueue::insertDelaySms($subscriberId, $delaySms2);
+//                }
+//            }
+//        }
         return $mtMessage;
     }
 
 // 	3.3
 // 	http://hocde.vn/api/telco/cancelService?requestid=2&msisdn=84916731158&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1
-    public function actionCancelService($requestid = null, $msisdn = null, $packagename = VFILM, $policy = null, $promotion = null, $note = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
+    public function actionCancelService($requestid = null, $msisdn = null, $packagename = 'HD', $policy = null, $promotion = null, $note = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
     {
         $cancelResult = 101;
-        $filelog = '/tmp/trungdh.log';
+        $filelog = '/tmp/hungld.log';
         $infomation = 'Time:' . date('Y/m/d H:i:s') . '-';
         $infomation .= "CancelService:reqid:$requestid|msisdn:$msisdn|package:$packagename|policy:$policy|promotion:$promotion|note:$note|app:$application|channel:$channel|";
 
@@ -932,7 +748,7 @@ class TelcoController extends CController
                 if (isset($note)) {
                     $mo = explode('|', $note);
                     if ($mo[0] == 'MO' && $ssm == NULL) {
-                        $mtMessage = 'Quy Khach chua dang ky dich vu vFilm cua VinaPhone. De dang ky dich vu, Quy Khach vui long soan DK gui 1579. De biet them chi tiet, Quy Khach vui long lien he tong dai 9191.';
+                        $mtMessage = 'Quy Khach chua dang ky dich vu goi ngay Hoc De. De dang ky dich vu, Quy Khach vui long soan HDD gui 9073. Chi tiet LH [dau so dich vu] hoac truy cap http://vhocde.vn.';
                         $res = VinaphoneController::sendSms($msisdn, $mtMessage);
                         $aDate = new DateTime();
                         $mt = new SmsMessage();
@@ -957,7 +773,7 @@ class TelcoController extends CController
             }
             $description = "_app_$application" . "_trial_0_note_$note";
             $chargingResult = $subscriber->cancelService($ssm, $channel, $requestid, $description, $username, $userip);
-            if ($chargingResult == CPS_OK || ($chargingResult == '11') || ($chargingResult == '6')) {
+            if ($chargingResult == CPS_OK) {
 //                if ($subscriber->id == 491006 || $subscriber->id == 240) {
                 if (isset($note)) {
                     $mo = explode('|', $note);
@@ -993,7 +809,7 @@ class TelcoController extends CController
 
 // 	3.4 Lấy thông tin gói dịch vụ
 // 	http://hocde.vn/api/telco/getSubscriberInfo?requestid=1&msisdn=84916731158&packagename=VFILM&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1
-    public function actionGetSubscriberInfo($requestid = null, $msisdn = null, $packagename = VFILM, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
+    public function actionGetSubscriberInfo($requestid = null, $msisdn = null, $packagename = 'HD', $application = 'TEST', $channel = 'API', $username = null, $userip = null)
     {
         $this->getSubscriberInfo($requestid, $msisdn, $packagename, $application, $channel, $username, $userip);
     }
@@ -1002,7 +818,7 @@ class TelcoController extends CController
 // 	http://hocde.vn/api/telco/getSubscriberAllPackageInfo?requestid=1&msisdn=84916731158&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1
     public function actionGetSubscriberAllPackageInfo($requestid = null, $msisdn = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
     {
-        $this->getSubscriberInfo($requestid, $msisdn, $packagename, $application, $channel, $username, $userip, 'VFILM');
+        $this->getSubscriberInfo($requestid, $msisdn, $packagename, $application, $channel, $username, $userip, 'HD');
     }
 
     public function getSubscriberInfo($requestid, $msisdn, $packagename = VFILM, $application = 'TEST', $channel = 'API', $username = null, $userip = null, $packagenameToShow = NULL)
@@ -1084,7 +900,7 @@ class TelcoController extends CController
     public function actionCancelSubscriber($requestid = null, $msisdn = null, $reason = 'Hủy', $application = 'TEST', $channel = 'API', $username = null, $userip = null)
     {
         $cancelResult = 110;
-        $filelog = '/tmp/trungdh.log';
+        $filelog = '/tmp/hungld.log';
         $infomation = 'actionCancelSubscriber Time:' . date('Y/m/d H:i:s') . '-';
         $infomation .= "CancelSubs:reqid:$requestid|msisdn:$msisdn|reason:$reason|app:$application|channel:$channel|";
         try {
@@ -1104,7 +920,7 @@ class TelcoController extends CController
 //$infomation .= "Thue bao $msisdn - chargingResult: $chargingResult, err: $cancelResult";
                 $infomation .= "chargingResult:$chargingResult|err:$cancelResult";
                 file_put_contents($filelog, $infomation . "\r\n", FILE_APPEND | LOCK_EX);
-                if ($chargingResult == CPS_OK || ($chargingResult == '11') || ($chargingResult == '6')) {
+                if ($chargingResult == CPS_OK) {
                     $mtMessage = $this->getMTContent(self::ACTION_CANCEL, $application);
                     //$res = VinaphoneController::sendSms($msisdn, $mtMessage);
 // 					$cancelResult = 0;
@@ -1155,8 +971,7 @@ class TelcoController extends CController
                 if ($ssm != NULL) {
                     $description = "_app_$application" . "_trial_0_note_$reason";
                     $chargingResult = $subscriberB->cancelService($ssm, $channel, $requestid, $description, $username, $userip);
-                    if ($chargingResult == CPS_OK) {
-                    } else {
+                    if ($chargingResult != CPS_OK) {
                         $changeMsisdnResult = 2; //huy dich vu cua thue bao msisdnB ko thanh cong
                         throw new Exception("Loi he thong");
                     }
