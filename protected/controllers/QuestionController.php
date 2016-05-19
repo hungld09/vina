@@ -137,11 +137,9 @@ class QuestionController extends Controller {
         $criteria->condition = "is_active = 1 and expiry_date > '$time'";
         $criteria->compare('subscriber_id', Yii::app()->session['user_id']);
         $usingService = ServiceSubscriberMapping::model()->findAll($criteria);
-        $level = Level::model()->findAll();
         $this->render('question/upload', array(
             'class' => $class,
             'subject' => $subject,
-            'level' => $level
         ));
     }
 

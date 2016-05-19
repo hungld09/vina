@@ -20,15 +20,15 @@ class ChargingProxy {
 	const PROCESS_ERROR_FREE_VOD = 12; //video nay free, ko can mua
 	const PROCESS_ERROR_BOUGHT_VOD = 13; //video nay mua le roi, ko can mua nua
 
-	const CHARGING_CONTENT_CP_NAME = "NAMVIET";
-	const CHARGING_CONTENT_REGISTER = "NAMVIET|dang ky goi|";
-	const CHARGING_CONTENT_EXTEND = "NAMVIET|gia han goi|";
-	const CHARGING_CONTENT_CANCEL = "NAMVIET|huy goi|";
+	const CHARGING_CONTENT_CP_NAME = "SCT";
+	const CHARGING_CONTENT_REGISTER = "SCT|dang ky goi|";
+	const CHARGING_CONTENT_EXTEND = "SCT|gia han goi|";
+	const CHARGING_CONTENT_CANCEL = "SCT|huy goi|";
 
-	const CHARGING_REGISTER = "REG_WEEKLY"; //dang ky goi PHIM7, PHIM30, PHIM
-	const CHARGING_EXTEND_SERVICE = "RENEW_WEEKLY"; //gia han dich vu goi PHIM7
+	const CHARGING_REGISTER = "REG_WEEKLY"; //dang ky goi HD, HD7, HD30
+	const CHARGING_EXTEND_SERVICE = "RENEW_WEEKLY"; //gia han dich vu goi HD7
 	const CHARGING_CANCEL = "UNREG_WEEKLY"; //huy dich vu
-	const CHARGING_CONTENT = "CONTENT"; // mua phim le
+	const CHARGING_CONTENT = "CONTENT"; // mua cau hoi le
 	
 
 	public static function chargingPayVod($msisdn, $vod, $transaction_id, $promotion=false, $debit_amount = -1, $channel = CHANNEL_TYPE_WAP) {
@@ -44,7 +44,7 @@ class ChargingProxy {
 		return $response->return;
 	}
 	
-	public static function chargingRegister($msisdn, $service, $transaction_id, $promotion=false, $debit_amount = -1, $channel = CHANNEL_TYPE_WAP, $note=NULL) { //debit_amount == -1 -> == $service->price (truong hop promotion==0)
+	public static function chargingRegister($username, $userip, $msisdn, $service, $transaction_id, $promotion=false, $debit_amount = -1, $channel = CHANNEL_TYPE_WAP, $note=NULL) { //debit_amount == -1 -> == $service->price (truong hop promotion==0)
 		$msisdn = CUtils::validatorMobile($msisdn,0);
 		$command = self::CHARGING_REGISTER;
 		if($note == NULL) {
@@ -57,7 +57,7 @@ class ChargingProxy {
 		if($debit_amount == -1) {
 			$debit_amount = $original_price;
 		}
-		$response = VinaphoneController::charging($transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
+		$response = VinaphoneController::charging2($username, $userip, $transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
 		Yii::log("chargingRegister: error_code = " . $response->return);
 		return $response->return;
 	}
@@ -109,11 +109,11 @@ class ChargingProxy {
 		return $response->return;
 	}
 
-	public static function chargingCancel($msisdn, $service, $transaction_id, $channel = CHANNEL_TYPE_WAP) {
+	public static function chargingCancel($username, $userip, $msisdn, $service, $transaction_id, $channel = 'WAP') {
 		$msisdn = CUtils::validatorMobile($msisdn,0);
 		$command = self::CHARGING_CANCEL;
 		$content = $service->code_name;
-		$response = VinaphoneController::charging($transaction_id, $msisdn, false, 0, 0, $command, $content, $channel);
+		$response = VinaphoneController::charging2($username, $userip, $transaction_id, $msisdn, false, 0, 0, $command, $content, $channel);
 		Yii::log("chargingCancel: error_code = " . $response->return);
 		return $response->return;
 	}
