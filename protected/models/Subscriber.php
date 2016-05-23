@@ -304,11 +304,11 @@ class Subscriber extends CActiveRecord
 		$subscriberTransaction->using_type = $using_type;//0: mua dich vu, 1: mua cau hoi,
 		$subscriberTransaction->purchase_type = $purchase_type; //0: mua moi, 1: gia han, 2: chu dong huy, 3: bi huy
 //		$subscriberTransaction->save();
-                echo '<pre>'; print_r($subscriberTransaction);die;
+//                echo '<pre>'; print_r($subscriberTransaction);die;
                 if(!$subscriberTransaction->save()){
                     echo '<pre>'; $subscriberTransaction->getErorrs();
                 }
-                echo 1;die;
+//                echo 1;die;
 		return $subscriberTransaction;
 	}
 	

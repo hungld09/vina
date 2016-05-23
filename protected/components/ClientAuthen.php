@@ -118,7 +118,7 @@ class ClientAuthen extends CComponent
     
     public static function checkLocalAddress($remoteAddr) {
     	//return true; //fixme tam thoi de open for all
-    	if(($remoteAddr == '127.0.0.1') || ($remoteAddr == '10.58.56.79') || ($remoteAddr == '118.70.233.163') || ($remoteAddr == '10.1.10.173') || ($remoteAddr == '10.1.10.47') || ($remoteAddr == '10.1.10.48') || ($remoteAddr == '10.149.57.131') || ($remoteAddr == '10.149.57.140')
+    	if(($remoteAddr == '127.0.0.1') || ($remoteAddr == '10.58.56.79') || ($remoteAddr == '118.70.72.165') || ($remoteAddr == '118.70.233.163') || ($remoteAddr == '10.1.10.173') || ($remoteAddr == '10.1.10.47') || ($remoteAddr == '10.1.10.48') || ($remoteAddr == '10.149.57.131') || ($remoteAddr == '10.149.57.140')
     	|| ($remoteAddr == '192.168.41.66') || ($remoteAddr == '192.168.41.67') || ($remoteAddr == '192.168.41.68')) {
     		return true;
     	}
