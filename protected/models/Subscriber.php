@@ -24,6 +24,7 @@
  * @property string $facebook_id
  * @property string $create_date
  * @property string $modify_date
+ * @property string $auto_recurring
  * @property integer $client_app_type
  * @property integer $using_promotion
  * @property integer $reserve_column
@@ -90,7 +91,7 @@ class Subscriber extends CActiveRecord
 			array('status_log, last_login_time, birthday, create_date, modify_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, subscriber_number, user_name, status, status_log, email, full_name, password, last_login_time, last_login_session, birthday, sex, avatar_url, yahoo_id, skype_id, google_id, zing_id, facebook_id, create_date, modify_date, client_app_type, using_promotion, reserve_column', 'safe', 'on'=>'search'),
+			array('id, subscriber_number, user_name, status, auto_recurring, status_log, email, full_name, password, last_login_time, last_login_session, birthday, sex, avatar_url, yahoo_id, skype_id, google_id, zing_id, facebook_id, create_date, modify_date, client_app_type, using_promotion, reserve_column', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -146,6 +147,7 @@ class Subscriber extends CActiveRecord
 			'avatar_url' => 'Avatar Url',
 			'yahoo_id' => 'Yahoo',
 			'skype_id' => 'Skype',
+			'auto_recurring' => 'Auto Recurring',
 			'google_id' => 'Google',
 			'zing_id' => 'Zing',
 			'facebook_id' => 'Facebook',
@@ -181,6 +183,7 @@ class Subscriber extends CActiveRecord
 		$criteria->compare('birthday',$this->birthday,true);
 		$criteria->compare('sex',$this->sex);
 		$criteria->compare('avatar_url',$this->avatar_url,true);
+		$criteria->compare('auto_recurring',$this->auto_recurring,true);
 		$criteria->compare('yahoo_id',$this->yahoo_id,true);
 		$criteria->compare('skype_id',$this->skype_id,true);
 		$criteria->compare('google_id',$this->google_id,true);
@@ -258,7 +261,7 @@ class Subscriber extends CActiveRecord
 		}else{
 			$aDate = new DateTime($time);
 		}
-		$subscriberTransaction = new SubscriberTransaction;
+		$subscriberTransaction = new SubscriberTransaction();
 	
 		if ($service != null) {
 			$subscriberTransaction->service_id = $service->id;
@@ -271,9 +274,8 @@ class Subscriber extends CActiveRecord
 		}
 	
 		$subscriberTransaction->subscriber_id = $this->id;
-		$subscriberTransaction->create_date = $aDate->format("Y-m-d H:i:s");
+		$subscriberTransaction->create_date = $aDate->format('Y-m-d H:i:s');
 		$subscriberTransaction->status = 2; //dat la fail, check status=CPS_OK thi update ve 1
-	
 		if ($using_type == 1) { // dang ky dich vu
 			if ($purchase_type == 2) { // gia han
 				$subscriberTransaction->description = isset($service) ? $service->display_name : "";
@@ -282,18 +284,14 @@ class Subscriber extends CActiveRecord
 			}
 			$subscriberTransaction->cost = isset($service) ? $service->price : 0;
 		} else if ($using_type == 2) { // mua le
-			$subscriberTransaction->description = "HD" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
+			$subscriberTransaction->description = "HOCDE" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
 			$subscriberTransaction->cost = isset($asset) ? $asset->price : 0;
-		} else if ($using_type == 4) { // tang phim
-			$subscriberTransaction->description = "HD" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
-			$subscriberTransaction->cost = isset($asset) ? $asset->price_gift : 0;
-		} else if ($using_type == USING_TYPE_CHARGING_SMS){
+		}  else if ($using_type == USING_TYPE_CHARGING_SMS){
 			$subscriberTransaction->cost = 100;
 			$subscriberTransaction->description = "sms";
 		} else {
 			$subscriberTransaction->cost = 0;
 		}
-	
 		$subscriberTransaction->error_code = "UNKNOWN";
 		if($this->status == self::STATUS_WHITE_LIST) {
 			$subscriberTransaction->cost = 0;
@@ -303,10 +301,14 @@ class Subscriber extends CActiveRecord
 	
 		//TODO:event_id dung lam gi?
 		//$subscriberTransaction->event_id = '';
-		$subscriberTransaction->using_type = $using_type;//0: mua dich vu, 1: mua cau hoi, 
+		$subscriberTransaction->using_type = $using_type;//0: mua dich vu, 1: mua cau hoi,
 		$subscriberTransaction->purchase_type = $purchase_type; //0: mua moi, 1: gia han, 2: chu dong huy, 3: bi huy
-		$subscriberTransaction->save();
-	
+//		$subscriberTransaction->save();
+                echo '<pre>'; print_r($subscriberTransaction);die;
+                if(!$subscriberTransaction->save()){
+                    echo '<pre>'; $subscriberTransaction->getErorrs();
+                }
+                echo 1;die;
 		return $subscriberTransaction;
 	}
 	

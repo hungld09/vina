@@ -249,7 +249,6 @@ class QuestionController extends Controller {
         $category_id = $question['category_id'];
         $subcriber_id = $question['subscriber_id'];
         $class_name = Class1::model()->findByAttributes(array('id' => $class_id, 'status' => 1));
-        $level = Level::model()->findByPk($question['level_id']);
         $subjectCategory = SubjectCategory::model()->findByAttributes(array('id' => $category_id, 'status' => 1));
         $question['class_name'] = $class_name['class_name'];
         $question['subject_name'] = $subjectCategory['subject_name'];

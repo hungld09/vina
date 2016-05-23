@@ -22,7 +22,7 @@ class TelcoController extends CController
 
     const  ACTION_REGISTER = 1;
     const  ACTION_CANCEL = 3;
-// 	MOBILE_ADS, VASPORTAL, VASDEALER, CCOS
+//  MOBILE_ADS, VASPORTAL, VASDEALER, CCOS
     const APPLICATION_VASGW = 'VASGW';
     const APPLICATION_MOBILE_ADS = 'MOBILE_ADS';
     const APPLICATION_VASPORTAL = 'VASPORTAL';
@@ -264,8 +264,8 @@ class TelcoController extends CController
         IP của người dùng thao tác (thao tác viên, để log không dùng để xác thực)
         ?requestid=1&msisdn=84916731158&packagename=VFILM&promotion=1w&trial=0&bundle=1&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1
         3.1
-        http://hocde.vn/api/telco/registerService?requestid=1&msisdn=84916731158&packagename=VFILM&promotion=1w&trial=1w&bundle=1&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1 */
-    public function actionRegisterService($requestid = null, $msisdn = null, $packagename = 'HD', $promotion = null, $trial = null, $bundle = null, $note = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
+        http://hocde.vn/api/telco/registerService?requestid=1&msisdn=84916731158&packagename=HOCDE&promotion=1w&trial=1w&bundle=1&note=vnp&application=vnp_api&channel=api&username=hung&userip=127.0.0.1 */
+    public function actionRegisterService($requestid = null, $msisdn = null, $packagename = 'HOCDE', $promotion = null, $trial = null, $bundle = null, $note = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
     {
 // 		Yii::log("*** 1 *** ".microtime());
         Yii::log("TestVtv ***:  requestid:" . $requestid . "|msisdn: " .$msisdn ."|packagename: ". $packagename ."|promotion". $promotion ."|trial: ". $trial ."|bundle: ". $bundle ."|note". $note ."|application: ". $application ."|channel: ". $channel ."|username: ". $username ."|userip: ". $userip ." *** ");
@@ -286,15 +286,13 @@ class TelcoController extends CController
         if(strpos ($note, 'CLEVERNET') !== false){
             $partnerIds = 11;
         }
-
-        try {
+//        try {
             $msisdn = CUtils::validatorMobile($msisdn);
             if (!isset($msisdn)) {
                 $registerResult = 101;
                 throw new Exception("Khong phai thue bao cua VinaPhone");
             }
             $subscriber = Subscriber::newSubscriber($msisdn);
-
             /* @var $subscriber Subscriber */
             if ($subscriber == NULL) {
                 throw new Exception("Loi he thong - tao thue bao $msisdn loi");
@@ -370,10 +368,11 @@ class TelcoController extends CController
 // 	    Yii::log("*** 5 *** ".microtime());
             Yii::log("newTransaction actionRegisterService subscriber_number: " . $msisdn . "channel_type" . $channel);
             if ($channel != CHANNEL_TYPE_ADMIN){
-                $trans = $subscriber->newTransaction($channel, USING_TYPE_REGISTER, PURCHASE_TYPE_NEW, $service, null, null);
+                $trans = $subscriber->newTransaction($channel, USING_TYPE_REGISTER, PURCHASE_TYPE_NEW, $service, null, null, $username, $userip);
             }else{
                 $trans = new SubscriberTransaction();
             }
+            echo 1;die;
             $trans->req_id = $requestid;
             if ($trans->cost != $cost) {
                 $trans->cost = $cost;
@@ -498,10 +497,10 @@ class TelcoController extends CController
                 }
             }
             $this->responseError($registerResult, $this->getRegisterErrorMsg($registerResult));
-        } catch (Exception $e) {
-            Yii::log("Exception: " . $e->getMessage());
-            $this->responseError($registerResult, $this->getRegisterErrorMsg($registerResult));
-        }
+//        } catch (Exception $e) {
+//            Yii::log("Exception: " . $e->getMessage());
+//            $this->responseError($registerResult, $this->getRegisterErrorMsg($registerResult));
+//        }
     }
 
     private function getUsingDaysByPromotion($promotion, $service)
@@ -725,7 +724,7 @@ class TelcoController extends CController
 
 // 	3.3
 // 	http://hocde.vn/api/telco/cancelService?requestid=2&msisdn=84916731158&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1
-    public function actionCancelService($requestid = null, $msisdn = null, $packagename = 'HD', $policy = null, $promotion = null, $note = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
+    public function actionCancelService($requestid = null, $msisdn = null, $packagename = 'HOCDE', $policy = null, $promotion = null, $note = null, $application = 'TEST', $channel = 'API', $username = null, $userip = null)
     {
         $cancelResult = 101;
         $filelog = '/tmp/hungld.log';
@@ -808,8 +807,8 @@ class TelcoController extends CController
     }
 
 // 	3.4 Lấy thông tin gói dịch vụ
-// 	http://hocde.vn/api/telco/getSubscriberInfo?requestid=1&msisdn=84916731158&packagename=VFILM&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1
-    public function actionGetSubscriberInfo($requestid = null, $msisdn = null, $packagename = 'HD', $application = 'TEST', $channel = 'API', $username = null, $userip = null)
+// 	http://hocde.vn/api/telco/getSubscriberInfo?requestid=1&msisdn=84916731158&packagename=HOCDE&note=vnp&application=vnp_api&channel=api&username=chau&userip=127.0.0.1
+    public function actionGetSubscriberInfo($requestid = null, $msisdn = null, $packagename = 'HOCDE', $application = 'TEST', $channel = 'API', $username = null, $userip = null)
     {
         $this->getSubscriberInfo($requestid, $msisdn, $packagename, $application, $channel, $username, $userip);
     }
@@ -821,7 +820,7 @@ class TelcoController extends CController
         $this->getSubscriberInfo($requestid, $msisdn, $packagename, $application, $channel, $username, $userip, 'HD');
     }
 
-    public function getSubscriberInfo($requestid, $msisdn, $packagename = VFILM, $application = 'TEST', $channel = 'API', $username = null, $userip = null, $packagenameToShow = NULL)
+    public function getSubscriberInfo($requestid, $msisdn, $packagename = 'HOCDE', $application = 'TEST', $channel = 'API', $username = null, $userip = null, $packagenameToShow = NULL)
     {
         $getInfoResult = 110;
         $last_time_subscribe = NULL;

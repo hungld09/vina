@@ -96,7 +96,7 @@ class Controller extends CController {
         $this->services = Service::model()->getService();
         if ($this->msisdn != '') {
             $subcriber= Subscriber::model()->findByAttributes(array('subscriber_number' => $this->msisdn));
-            $this->id = $subcriber->id;
+//            $this->id = $subcriber->id;
             $this->usingServices = ServiceSubscriberMapping::model()->findByAttributes(array('is_active'=>1, 'subscriber_id'=>$this->id));
         }else{
             $this->usingServices = null;

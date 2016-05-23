@@ -20,12 +20,12 @@ class ChargingProxy {
 	const PROCESS_ERROR_FREE_VOD = 12; //video nay free, ko can mua
 	const PROCESS_ERROR_BOUGHT_VOD = 13; //video nay mua le roi, ko can mua nua
 
-	const CHARGING_CONTENT_CP_NAME = "SCT";
-	const CHARGING_CONTENT_REGISTER = "SCT|dang ky goi|";
-	const CHARGING_CONTENT_EXTEND = "SCT|gia han goi|";
-	const CHARGING_CONTENT_CANCEL = "SCT|huy goi|";
+	const CHARGING_CONTENT_CP_NAME = "CP_NET2E";
+	const CHARGING_CONTENT_REGISTER = "CP_NET2E|dang ky goi|";
+	const CHARGING_CONTENT_EXTEND = "CP_NET2E|gia han goi|";
+	const CHARGING_CONTENT_CANCEL = "CP_NET2E|huy goi|";
 
-	const CHARGING_REGISTER = "REG_WEEKLY"; //dang ky goi HD, HD7, HD30
+	const CHARGING_REGISTER = "REG_WEEKLY"; //dang ky goi HD, HD7
 	const CHARGING_EXTEND_SERVICE = "RENEW_WEEKLY"; //gia han dich vu goi HD7
 	const CHARGING_CANCEL = "UNREG_WEEKLY"; //huy dich vu
 	const CHARGING_CONTENT = "CONTENT"; // mua cau hoi le

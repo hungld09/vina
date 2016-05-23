@@ -4,20 +4,34 @@
  * This is the model class for table "subscriber_transaction".
  *
  * The followings are the available columns in table 'subscriber_transaction':
- * @property integer $id
- * @property string $create_date
- * @property string $issuer
- * @property string $card_seria
- * @property string $card_code
- * @property string $error_code
- * @property integer $status
- * @property string $description
+ * @property string $id
+ * @property integer $service_id
+ * @property integer $vod_asset_id
+ * @property integer $vod_episode_id
  * @property integer $subscriber_id
+ * @property string $create_date
+ * @property integer $status
+ * @property string $service_number
+ * @property string $description
+ * @property double $cost
+ * @property string $channel_type
+ * @property string $event_id
+ * @property integer $using_type
  * @property integer $purchase_type
+ * @property string $error_code
+ * @property string $req_id
+ * @property string $vnp_username
+ * @property string $vnp_ip
+ *
+ * The followings are the available model relations:
+ * @property Service $service
+ * @property Subscriber $subscriber
+ * @property VodAsset $vodAsset
+ * @property VodEpisode $vodEpisode
  */
 class SubscriberTransaction extends CActiveRecord
 {
-        const PURCHASE_TYPE_NEW = 1;
+	const PURCHASE_TYPE_NEW = 1;
 	const PURCHASE_TYPE_EXTEND = 2;
 	const PURCHASE_TYPE_CANCEL = 3;
 	const PURCHASE_TYPE_FORCE_CANCEL = 4;
@@ -25,6 +39,17 @@ class SubscriberTransaction extends CActiveRecord
 	const PURCHASE_TYPE_RESTORE = 6;
 	const PURCHASE_TYPE_EXTEND_TIME = 7;
 	const PURCHASE_TYPE_RETRY_EXTEND = 10;
+	
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return SubscriberTransaction the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -41,13 +66,16 @@ class SubscriberTransaction extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('create_date', 'required'),
-			array('status, subscriber_id, purchase_type', 'numerical', 'integerOnly'=>true),
-			array('issuer, card_seria, card_code, error_code', 'length', 'max'=>45),
+			array('subscriber_id, status, error_code', 'required'),
+			array('service_id, vod_asset_id, vod_episode_id, subscriber_id, status, using_type, purchase_type', 'numerical', 'integerOnly'=>true),
+			array('cost', 'numerical'),
+			array('service_number', 'length', 'max'=>45),
 			array('description', 'length', 'max'=>200),
+			array('channel_type', 'length', 'max'=>10),
+			array('error_code', 'length', 'max'=>20),
 			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, create_date, issuer, vnp_username, vnp_ip, card_seria, card_code, error_code, partner_id, oncash, status, description, subscriber_id, purchase_type', 'safe', 'on'=>'search'),
+			// Please remove those attributes that should not be searched.
+			array('id, service_id, vod_asset_id, vnp_username, vnp_ip, vod_episode_id, subscriber_id, create_date, status, service_number, description, cost, channel_type, using_type, purchase_type, error_code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +87,10 @@ class SubscriberTransaction extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'service' => array(self::BELONGS_TO, 'Service', 'service_id'),
+			'subscriber' => array(self::BELONGS_TO, 'Subscriber', 'subscriber_id'),
+			'vodAsset' => array(self::BELONGS_TO, 'VodAsset', 'vod_asset_id'),
+			'vodEpisode' => array(self::BELONGS_TO, 'VodEpisode', 'vod_episode_id'),
 		);
 	}
 
@@ -69,67 +101,56 @@ class SubscriberTransaction extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'create_date' => 'Create Date',
-			'issuer' => 'Issuer',
-			'card_seria' => 'Card Seria',
-			'card_code' => 'Card Code',
-			'error_code' => 'Error Code',
-			'status' => 'Status',
-			'description' => 'Description',
+			'service_id' => 'Service',
+			'vod_asset_id' => 'Vod Asset',
+			'vod_episode_id' => 'Vod Episode',
 			'subscriber_id' => 'Subscriber',
-			'partner_id' => 'Partner Id',
-			'purchase_type' => '1 - nap the
-2 - mua cau hoi
-',
+			'create_date' => 'Create Date',
+			'status' => 'Status',
+			'service_number' => 'Service Number',
+			'description' => 'Description',
+			'cost' => 'Cost',
+			'channel_type' => 'Channel Type',
+			'using_type' => 'Using Type',
+			'purchase_type' => 'Purchase Type',
+			'error_code' => 'Error Code',
+			'vnp_ip' => 'Vnp Ip',
+			'vnp_username' => 'Vnp Username',
 		);
 	}
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('create_date',$this->create_date,true);
-		$criteria->compare('issuer',$this->issuer,true);
-		$criteria->compare('card_seria',$this->card_seria,true);
-		$criteria->compare('card_code',$this->card_code,true);
-		$criteria->compare('error_code',$this->error_code,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('service_id',$this->service_id);
+		$criteria->compare('vod_asset_id',$this->vod_asset_id);
+		$criteria->compare('vod_episode_id',$this->vod_episode_id);
 		$criteria->compare('subscriber_id',$this->subscriber_id);
-		$criteria->compare('partner_id',$this->partner_id);
+		$criteria->compare('create_date',$this->create_date,true);
+		$criteria->compare('status',$this->status);
+		$criteria->compare('service_number',$this->service_number,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('cost',$this->cost);
+		$criteria->compare('channel_type',$this->channel_type,true);
+		$criteria->compare('event_id',$this->event_id,true);
+		$criteria->compare('using_type',$this->using_type);
 		$criteria->compare('purchase_type',$this->purchase_type);
+		$criteria->compare('error_code',$this->error_code,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return SubscriberTransaction the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
-        
+	
 	public static function getMaxTransactionId() {
 		$result = Yii::app()->db->createCommand()
 			->selectDistinct('t.id')
