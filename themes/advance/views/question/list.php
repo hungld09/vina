@@ -10,7 +10,7 @@ if ($this->msisdn != '') {
 ?>
 <div class="breadcrumbs">
     <ul>
-        <li><a href="#">Menu</a></li>
+        <li><a href="javascript:;">Menu</a></li>
         <li><span>&frasl;</span></li>
         <li><span>Câu hỏi</span></li>
     </ul>

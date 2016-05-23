@@ -1,6 +1,6 @@
 <div class="breadcrumbs">
     <ul>
-        <li><a href="#">Menu</a></li>
+        <li><a href="javascript:;">Menu</a></li>
         <li><span>&frasl;</span></li>
         <li><span>Kết quả tìm kiếm</span></li>
     </ul>

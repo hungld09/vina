@@ -31,7 +31,7 @@
                 </ul>
             </div>
             <div class="question-more">
-                <a href="#">Xem tất cả ngân hàng câu hỏi</a>
+                <a href="<?php echo Yii::app()->baseUrl . '/question/list' ?>">Xem tất cả ngân hàng câu hỏi</a>
             </div>
         </div>
         <div class="block-banner">

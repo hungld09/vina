@@ -119,7 +119,6 @@
         var subject= $('#subject').val();
         var class1= $('#class1').val();
         var file= $('#file').val();
-        var uid= <?php echo $this->id ?>;
         if(file == null|| file ==''){
             alert('Bạn chưa chọn ảnh'); return false;
         }

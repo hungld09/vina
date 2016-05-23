@@ -32,7 +32,7 @@
                         ),
                         array(
                             'label' => 'Clip bài giảng',
-                            'url'   => array('/clip-bai-giang'),
+                            'url'   => array('/videos'),
                         ),
                         array(
                             'label' => 'Thư viện',
@@ -44,7 +44,7 @@
                         ),
                         array(
                             'label' => 'Tin tức',
-                            'url'   => array('/tin-tuc'),
+                            'url'   => array('/blog'),
                         ),
                         array(
                             'label' => 'Giới thiệu',

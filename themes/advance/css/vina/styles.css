@@ -106,7 +106,6 @@ select{
 .question-title-class select, .question-title-subject select {
     background-color: #0271d4 !important;
     color: #fff !important;
-    font-family: font-dep2;
     padding: 5px 14px;
     font-size: 14px;
     border-radius: 5px;
@@ -240,7 +239,7 @@ p.red.txt-center{ margin: 20px 20px 60px; text-align: center; font-size: 16px; f
 .box-news{ background: #fff; margin: 5px; padding: 15px 0px;}
 .box-news ul{ padding: 0px 0px 0px 15px;}
 .box-news ul li{ position: relative; padding: 0px 0px 15px 86px; color: #7a7a7a;}
-.box-news ul li div.thum1{ position: absolute; top: -12px; left: 0px;}
+.box-news ul li div.thum1{ position: absolute; top: 0; left: 0px;}
 .infor{ border-bottom: 1px solid #f1f1f1; padding: 0px 10px 14px 0;}
 .box-news ul li h1,.new-detail h1{ font-family: 'sfu_helveticabold'; margin: 0px 0px 7px;}
 .box-news ul li h1 a,.box-news ul li h1{ color: #4c4c4c; font-size: 16px; font-weight: normal;  }
@@ -249,7 +248,7 @@ p.red.txt-center{ margin: 20px 20px 60px; text-align: center; font-size: 16px; f
 .new-detail .txt-center{ margin: 0px 0px 10px;}
 .new-detail p{ margin: 0px 0px 5px;}
 .box-result ul li{ padding-left: 45px;}
-.box-result ul li .thum1{ padding-top: 12px;}
+.box-result ul li .thum1{}
 
 
 .footer{ background: #0271d4; padding: 15px 0px 18px; color: #fff;}

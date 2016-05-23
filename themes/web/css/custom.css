@@ -669,11 +669,10 @@ select {
 .box-news ul li div.thum1 {
     left: 0;
     position: absolute;
-    top: -12px;
+    top: 0;
 }
 
 .box-result ul li .thum1 {
-    padding-top: 12px;
 }
 
 .box-news ul li h3 a, .box-news ul li h3 {
@@ -700,6 +699,49 @@ select {
 .infor {
     border-bottom: 1px solid #f1f1f1;
     padding: 0 10px 14px 0;
+}
+
+/*formUpload*/
+.question-title {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 10px 5px;
+}
+
+.question-title-1 {
+    margin-bottom: 10px;
+}
+
+.question-title-1 input {
+    border: 1px solid #ededed;
+    font-size: 18px;
+    padding: 15px 5px;
+    width: 100%;
+}
+
+.question-title-2 {
+    display: inline-flex;
+    text-align: right;
+    width: 100%;
+}
+
+.question-title-class select, .question-title-subject select {
+    background-color: #0271d4 !important;
+    border: medium none !important;
+    border-radius: 5px;
+    color: #fff !important;
+    font-size: 14px;
+    padding: 5px 14px;
+}
+
+#filediv {
+    min-height: 100px;
+    position: relative;
+    width: 100%;
+}
+
+.question-title-class, .question-title-subject, .question-submit-question {
+    text-align: center;
 }
 
 ul li {

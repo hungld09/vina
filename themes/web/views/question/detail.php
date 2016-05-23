@@ -1,86 +1,80 @@
 <?php // echo "<pre>"; print_r($question);die;   ?>
 <?php
-if (Yii::app()->session['user_id']) {
-    $user_id = Yii::app()->session['user_id'];
-    $subcriberPop = Subscriber::model()->findByPk($user_id);
-} else {
-    $user_id = -1;
-}
+    if (Yii::app()->session['user_id']) {
+        $user_id      = Yii::app()->session['user_id'];
+        $subcriberPop = Subscriber::model()->findByPk($user_id);
+    } else {
+        $user_id = -1;
+    }
 ?>
 <?php
-$CUtils = new CUtils();
-$time = $CUtils->formatTime($question['modify_date']);
+    $CUtils = new CUtils();
+    $time   = $CUtils->formatTime($question['modify_date']);
 ?>
-<link href="<?php echo Yii::app()->theme->baseUrl ?>/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="<?php echo Yii::app()->theme->baseUrl ?>/css/bootstrap-select.css" rel="stylesheet"/>
-<link href="<?php echo Yii::app()->theme->baseUrl ?>/css/reset.css" rel="stylesheet"/>
-<style>
-    .changeLevel{color: #343434 !important; font-weight: 500;}
-    .levelSuccess, .levelFail{    padding: 5px;font-size: 12px;}
-</style>
-<div class="breadcrumbs">
-    <ul>
-        <li><a href="javascript:;">Menu</a></li>
-        <li><span>&frasl;</span></li>
-        <li><span>Câu hỏi</span></li>
-    </ul>
-</div>
-<div class="box-ques">
-    <div class="item-ques">
-        <div class="item-top item-top1">
-            <div class="tel">
-                <p class="num"><?php echo $question['subscriber_name'] ?></p>
-                <?php echo $time ?>
-            </div>
-            <div class="f">
-                <a data-toggle="modal" data-target="#myModal3" href="#"><img src="<?php echo Yii::app()->theme->baseUrl . '/images/f.png' ?>" alt="" /></a>
-            </div>
-        </div>
-        <div class="calculator">
-            <div class="cal">
-                <p class="help left">
-                    <?php echo $question['title'] ?>
-                </p>
-                <p class="right">
-                    <img alt="" src="<?php echo Yii::app()->theme->baseUrl . '/images/can.png' ?>">
-                    <?php echo 'Môn ' . $question['subject_name'] ?>, <?php echo $question['class_name'] ?>
-                </p>
-            </div>
-            <div><img src="<?php echo IPSERVER . $question['base_url'] ?>" title="<?php echo $question['title'] ?>" alt="<?php echo $question['title'] ?>" /></div>
-        </div>
-    </div>
-    <?php
-    $answer_id = -1;
-    if ($answer != '') {
-        $timeAnswer = $CUtils->formatTime($answer['modify_date']);
-        $answer_id = $answer['id'];
-        ?>
-        <div class="item-ques">
-            <div class="item-top">
-                <div class="tel">
-                    <p class="num"><span>Giáo viên:</span> <?php echo $subUser['subscriber_number'] ?></p>
-                    <?php echo $timeAnswer ?>
+<div class="question-list">
+    <div class="col-md-12">
+        <h1>Câu hỏi người dùng</h1>
+        <div class="content">
+            <div class="item-ques">
+                <div class="item-top item-top1">
+                    <div class="tel">
+                        <p class="num"><?php echo $question['subscriber_name'] ?></p>
+                        <?php echo $time ?>
+                    </div>
+                    <div class="pull-right">
+                        <a data-toggle="modal" data-target="#myModal3" href="#"><img src="<?php echo Yii::app()->theme->baseUrl . '/images/f.png' ?>"
+                                                                                     alt=""/></a>
+                    </div>
                 </div>
-
+                <div class="calculator">
+                    <div class="cal">
+                        <span><?php echo 'Môn ' . $question['subject_name'] ?>, <?php echo $question['class_name'] ?></span>
+                        <p class="img-can">
+                            <img alt="" src="<?php echo Yii::app()->theme->baseUrl . '/images/can.png' ?>">
+                        </p>
+                        <p class="help">
+                            <?php echo $question['title'] ?>
+                        </p>
+                    </div>
+                    <div><img src="<?php echo IPSERVER . $question['base_url'] ?>" title="<?php echo $question['title'] ?>"
+                              alt="<?php echo $question['title'] ?>"/>
+                    </div>
+                </div>
             </div>
-            <div class="calculator">						
-                <p class="help">
-                    Đáp án của em đây nhé
-                </p>
-                <?php
-                if (count($answer['url_images']) > 0):
-                    foreach ($answer['url_images'] as $item) {
-                        ?>
-                        <div>
-                            <img src="<?php echo $item['images'] ?>" title="" alt="">
-                        </div>
-                        <?php
-                    }
-                endif;
-                ?>
-            <?php } else { ?>
-                <h2>Chưa có câu trả lời</h2>
-            <?php } ?>
+            <?php
+                $answer_id = -1;
+                if ($answer != '') {
+                $timeAnswer = $CUtils->formatTime($answer['modify_date']);
+                $answer_id  = $answer['id'];
+            ?>
+            <div class="item-ques">
+                <div class="item-top">
+                    <div class="tel">
+                        <p class="num"><span>Giáo viên:</span> <?php echo $subUser['subscriber_number'] ?></p>
+                        <?php echo $timeAnswer ?>
+                    </div>
+
+                </div>
+                <div class="calculator">
+                    <p class="help">
+                        Đáp án của em đây nhé
+                    </p>
+                    <?php
+                        if (count($answer['url_images']) > 0):
+                            foreach ($answer['url_images'] as $item) {
+                                ?>
+                                <div>
+                                    <img src="<?php echo $item['images'] ?>" title="" alt="">
+                                </div>
+                                <?php
+                            }
+                        endif;
+                    ?>
+                    <?php } else { ?>
+                        <h2>Chưa có câu trả lời</h2>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -191,8 +185,7 @@ $time = $CUtils->formatTime($question['modify_date']);
         });
     });
 
-    function countdown(elementName, minutes, seconds)
-    {
+    function countdown(elementName, minutes, seconds) {
         var element, hours, endTime, mins, msLeft, time;
         element = document.getElementById(elementName);
         endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
@@ -200,13 +193,11 @@ $time = $CUtils->formatTime($question['modify_date']);
 //        endTime.setTime(endTime.getTime()+ (1* 60 *7 * 60 * 60 * 1000));
         updateTimer();
 
-        function twoDigits(n)
-        {
+        function twoDigits(n) {
             return (n <= 9 ? "0" + n : n);
         }
 
-        function updateTimer()
-        {
+        function updateTimer() {
             msLeft = endTime - (+new Date)
             if (msLeft <= 0) {
                 element.innerHTML = "Hết giờ";
@@ -306,7 +297,9 @@ $time = $CUtils->formatTime($question['modify_date']);
     </div>
 </div>
 <style>
-    .reportQuestion label{margin-right: 10px}
+    .reportQuestion label {
+        margin-right: 10px
+    }
 </style>
 <script>
     $('.sub-reportQuestion').click(function () {
