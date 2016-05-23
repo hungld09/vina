@@ -37,6 +37,7 @@
                     </div>
                     <button type="submit" class="search-question-bank" name="submit"><span><span>Tìm kiếm</span></span></button>
                 </form>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>

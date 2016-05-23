@@ -623,6 +623,8 @@ a.send-question {
 
 .box-search .input-box {
     float: left;
+    margin-bottom: 10px;
+    margin-right: 8px;
 }
 
 .box-search input, .box-search select, .item-top select {
@@ -631,7 +633,6 @@ a.send-question {
     color: #353535;
     height: 34px;
     padding: 0 30px 0 15px;
-    margin-right: 8px;
 }
 
 .box-search select, .item-top select {
@@ -653,11 +654,56 @@ select {
 
 .box-search button {
     border: 1px solid #e5e5e5;
-    display: inline-block;
+    float: left;
     background: #00adef;
     cursor: pointer;
     color: #fff;
     padding: 0;
+}
+
+/*box-news*/
+.box-news ul {
+    padding: 0;
+}
+
+.box-news ul li div.thum1 {
+    left: 0;
+    position: absolute;
+    top: -12px;
+}
+
+.box-result ul li .thum1 {
+    padding-top: 12px;
+}
+
+.box-news ul li h3 a, .box-news ul li h3 {
+    color: #4c4c4c;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.box-news ul li h3, .new-detail h3 {
+    font-family: 'sfu_helveticabold', Helvetica, Arial, Verdana, Tahoma, sans-serif;
+    margin: 0 0 7px;
+}
+
+.box-news ul li {
+    color: #7a7a7a;
+    padding: 0 0 15px 86px;
+    position: relative;
+}
+
+.box-result ul li {
+    padding-left: 45px;
+}
+
+.infor {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 0 10px 14px 0;
+}
+
+ul li {
+    list-style: none;
 }
 
 .item-ques:after, .item-top:after {
