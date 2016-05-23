@@ -78,16 +78,6 @@ $time = $CUtils->formatTime($question['modify_date']);
                     }
                 endif;
                 ?>
-                <?php
-                $banner = Banner::model()->findByAttributes(array('status' => 1, 'type' => 0));
-                if (count($banner) > 0) {
-                    ?>
-                    <div class="col-md-12" style="margin-top: 10px">
-                        <div class="articleitem_body">
-                            <a class="ava" href="<?php echo $banner['link'] ?>"><img style="width: 100%; height: auto; max-height: 100px;" src="<?php echo IPSERVER . 'web/banner/' . $banner['image_url'] ?>" title="" alt=""></a>
-                        </div>
-                    </div>
-                <?php } ?>
             <?php } else { ?>
                 <h2>Chưa có câu trả lời</h2>
             <?php } ?>
