@@ -266,7 +266,6 @@ class QuestionController extends Controller {
         $checkLike = '';
         $subUser = '';
         $reply = '';
-        $arrHoldQuestion = '';
         $url_images = array();
         $subUser = Subscriber::model()->findByPk($answer['subscriber_id']);
         $answer_id = $answer['id'];
@@ -290,11 +289,6 @@ class QuestionController extends Controller {
                 }
                 $answer['url_images'] = $url_images;
             }
-            $time = time();
-            $criteria = new CDbCriteria;
-            $criteria->condition = "end_time > $time";
-            $criteria->compare('question_id', $id);
-            $arrHoldQuestion = HoldQuestion::model()->findAll($criteria);
         } else {
             $answer['url_images'] = $url_images;
         }
