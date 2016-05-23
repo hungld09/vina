@@ -1,60 +1,20 @@
-<div class="breadcrumbs">
-    <ul>
-        <li><a href="javascript:;">Menu</a></li>
-        <li><span>&frasl;</span></li>
-        <li><span>Tin tức</span></li>
-    </ul>
-</div>
-<div class="box-news">
-    <ul>
-        <li>
-            <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/thum1.png" alt=""/></div>
-            <div class="infor">
-                <h1><a href="#">Những nghề lương cao nhất dành cho người mới ra trường</a></h1>
-                <p>Dựa trên số liệu của Cục Thống kê Lao động Mỹ, trang WalletHub phân tích 109 viên mới ra trường</p>
+<div class="question-list">
+    <div class="col-md-12">
+        <h1>Tin tức</h1>
+        <div class="content">
+            <div class="box-news">
+                <ul>
+                    <?php foreach ($items as $item): ?>
+                        <li>
+                            <div class="thum1"><img src="<?php echo IPSERVER . 'web/uploads/' . $item->image_url ?>" alt=""/></div>
+                            <div class="infor">
+                                <h3><a href="<?php echo Yii::app()->baseUrl . '/blog/' . $item->id ?>"><?php echo $item->title ?></a></h3>
+                                <p><?php echo $item->description ?></p>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
-        </li>
-        <li>
-            <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/thum1.png" alt=""/></div>
-            <div class="infor">
-                <h1><a href="#">Những nghề lương cao nhất dành cho người mới ra trường</a></h1>
-                <p>Dựa trên số liệu của Cục Thống kê Lao động Mỹ, trang WalletHub phân tích 109 viên mới ra trường</p>
-            </div>
-        </li>
-        <li>
-            <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/thum1.png" alt=""/></div>
-            <div class="infor">
-                <h1><a href="#">Những nghề lương cao nhất dành cho người mới ra trường</a></h1>
-                <p>Dựa trên số liệu của Cục Thống kê Lao động Mỹ, trang WalletHub phân tích 109 viên mới ra trường</p>
-            </div>
-        </li>
-        <li>
-            <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/thum1.png" alt=""/></div>
-            <div class="infor">
-                <h1><a href="#">Những nghề lương cao nhất dành cho người mới ra trường</a></h1>
-                <p>Dựa trên số liệu của Cục Thống kê Lao động Mỹ, trang WalletHub phân tích 109 viên mới ra trường</p>
-            </div>
-        </li>
-        <li>
-            <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/thum1.png" alt=""/></div>
-            <div class="infor">
-                <h1><a href="#">Những nghề lương cao nhất dành cho người mới ra trường</a></h1>
-                <p>Dựa trên số liệu của Cục Thống kê Lao động Mỹ, trang WalletHub phân tích 109 viên mới ra trường</p>
-            </div>
-        </li>
-        <li>
-            <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/thum1.png" alt=""/></div>
-            <div class="infor">
-                <h1><a href="#">Những nghề lương cao nhất dành cho người mới ra trường</a></h1>
-                <p>Dựa trên số liệu của Cục Thống kê Lao động Mỹ, trang WalletHub phân tích 109 viên mới ra trường</p>
-            </div>
-        </li>
-        <li>
-            <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/thum1.png" alt=""/></div>
-            <div class="infor">
-                <h1><a href="#">Những nghề lương cao nhất dành cho người mới ra trường</a></h1>
-                <p>Dựa trên số liệu của Cục Thống kê Lao động Mỹ, trang WalletHub phân tích 109 viên mới ra trường</p>
-            </div>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>

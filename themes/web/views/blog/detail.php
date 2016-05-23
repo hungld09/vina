@@ -1,13 +1,12 @@
-<div class="web_body" style="float: left">
-    <div class="blog-wap">
-        <h2>
-        <?php
-            echo $item->title;
-        ?>
-        </h2>
-        <?php
-            echo $item->content;
-        ?>
+<div class="question-list">
+    <div class="col-md-12">
+        <h1><?php echo $item->title; ?></h1>
+        <div class="box-news">
+            <div class="new-detail">
+                <?php
+                    echo $item->content;
+                ?>
+            </div>
+        </div>
     </div>
 </div>
-
