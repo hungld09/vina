@@ -134,7 +134,7 @@ class Controller extends CController {
         } else {
             Yii::app()->theme = 'web';
         }
-        Yii::app()->theme = 'advance';
+//        Yii::app()->theme = 'advance';
     }
 
 }

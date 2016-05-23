@@ -8,12 +8,12 @@
 <div class="box-news box-result">
     <ul>
         <?php
-        $requestUrl = Yii::app()->request->url;
-        if (count($result) > 0) {
+            $requestUrl = Yii::app()->request->url;
+            if (count($result) > 0) {
             foreach ($result as $item):
                 ?>
                 <li>
-                    <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/img-result.png" alt="" /></div>
+                    <div class="thum1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/img-result.png" alt=""/></div>
                     <div class="infor">
                         <h1><?php echo $item['question'] ?></h1>
                     </div>
@@ -38,10 +38,15 @@
                 </script>
                 <?php
             endforeach;
-            ?>
-        </ul>
-    </div>
-    <div style="width: 80%;
+        ?>
+    </ul>
+</div>
+
+<?php
+    $requestUrl = preg_replace('(&page=\d+)', '', $requestUrl);
+?>
+
+<div style="width: 80%;
          height: 40px;
          text-align: center;
          margin: auto;
@@ -51,17 +56,17 @@
          margin-top: 10px;
          margin-bottom: 15px;
          ">
-        <a href="<?php echo $requestUrl ?><?php
+    <a href="<?php echo $requestUrl ?><?php
         if (isset($_GET['page'])) {
             $page = $_GET['page'] + 1;
             echo '&page=' . $page;
         } else {
             echo '&page=1';
         }
-        ?>">Xem thêm</a>
-    </div>
-    <?php
-} else {
+    ?>">Xem thêm</a>
+</div>
+<?php
+    } else {
     ?>
     <div class="web_body">
         <p>Chưa cập nhật</p>
@@ -70,16 +75,16 @@
 }
 ?>
 <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
-            $(document).ready(function () {
-                MathJax.Hub.Config({
-                    tex2jax: {
-                        inlineMath: [
-                            ['$', '$'],
-                            ['\\(', '\\)']
-                        ]
-                    }
-                });
-            });
+    $(document).ready(function () {
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            }
+        });
+    });
 </script>
 <script>
     $('.loadmore').click(function () {
@@ -89,12 +94,12 @@
         var chapter_id = <?php echo $chapter_id ?>;
         var unit_id = <?php echo $unit_id ?>;
         var title = <?php
-if ($title == '') {
-    echo $title = '-1';
-} else {
-    echo $title;
-}
-?>;
+            if ($title == '') {
+                echo $title = '-1';
+            } else {
+                echo $title;
+            }
+            ?>;
         $('.loadmore').attr('click', click);
         //        showLoadItem();
         $.ajax({

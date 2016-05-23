@@ -49,7 +49,7 @@
                 <div class="date">10phút</div>
             </div>
             <div class="calculator">
-                <img src="<?php echo Yii::app()->theme->baseUrl ?>images/can.png" alt="" />
+                <img src="<?php echo Yii::app()->theme->baseUrl ?>/images/can.png" alt="" />
                 Môn toán, Lớp 12
             </div>
         </li>
@@ -73,7 +73,7 @@
                 <div class="date">10phút</div>
             </div>
             <div class="calculator">
-                <img src="<?php echo Yii::app()->theme->baseUrl ?>images/can.png" alt="" />
+                <img src="<?php echo Yii::app()->theme->baseUrl ?>/images/can.png" alt="" />
                 Môn toán, Lớp 12
             </div>
         </li>

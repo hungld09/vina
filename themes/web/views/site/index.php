@@ -1,90 +1,105 @@
-<?php
-$this->title = 'Hướng dẫn giải bài tập toán, lý, hóa online | Học Dễ OnEdu';
-$this->description = 'Học dễ Onedu, Hoc de Onedu là ứng dụng hỗ trợ hướng dẫn giải bài tập toán, giải bài tập vật lý, giải bài tập hóa học online nhanh, hiệu quả nhất';
-$this->keywords = 'học dễ, hoc de, học dễ onedu, hoc de onedu, giải bài tập toán, giải bài tập vật lý, giải bài tập hóa học, hướng dẫn giải bài tập, đáp án bài tập, để học tốt';
-?>
-<!--slider-->
-<style>
-    .partner{
-        float: left;
-        width: 100%;
-        text-align: center;
-        margin: auto;
-        padding: 0;
-        display: flex;
-    }
-    .partner img{width: 80%}
-</style>
+<div class="row">
+    <div class="col-md-4 col-left no_pad_right">
+        <div class="block-question">
+            <h3>Ngân hàng câu hỏi</h3>
+            <div class="content">
+                <ul>
+                    <li>
+                        <a href="#">x^2-7x+12=0 Simple and best practice solution</a>
+                    </li>
+                    <li>
+                        <a href="#">x^2-7x+12=0 Simple and best practice solution</a>
+                    </li>
+                    <li>
+                        <a href="#">x^2-7x+12=0 Simple and best practice solution</a>
+                    </li>
+                    <li>
+                        <a href="#">x^2-7x+12=0 Simple and best practice solution</a>
+                    </li>
+                    <li>
+                        <a href="#">x^2-7x+12=0 Simple and best practice solution</a>
+                    </li>
+                    <li>
+                        <a href="#">x^2-7x+12=0 Simple and best practice solution</a>
+                    </li>
+                    <li>
+                        <a href="#">x^2-7x+12=0 Simple and best practice solution</a>
+                    </li>
+                    <li>
+                        <a href="#">x^2-7x+12=0 Simple and best practice solution</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="question-more">
+                <a href="#">Xem tất cả ngân hàng câu hỏi</a>
+            </div>
+        </div>
+        <div class="block-banner">
+            <?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseUrl . '/images/demo/banner.png', ''), Yii::app()->createUrl('/'), array('class' => '')) ?>
+        </div>
+    </div>
 
-<section id="slider">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#slider-carousel" data-slide-to="0" class="active" style="text-indent: 0px;width: 32px;height: auto;font-weight: bold;color: #fff;">1</li>
-                        <li data-target="#slider-carousel" data-slide-to="1" style="text-indent: 0px;width: 32px;height: auto;font-weight: bold;color: #fff;">2</li>
-                        <li data-target="#slider-carousel" data-slide-to="2" style="text-indent: 0px;width: 32px;height: auto;font-weight: bold;color: #fff;">3</li>
-                    </ol>
-
-                    <div class="carousel-inner" style="height: 361px;">
-                        <div class="item active">
-                            <div class="col-sm-6">
-                                <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/slide1.png"  class="pricing" alt="" />
+    <div class="col-md-8 col-mid">
+        <div class="block-clip">
+            <div class="title">
+                <h3 class="pull-left">Clip bài giảng mới</h3>
+                <div class="pull-right">
+                    <a href="#">Xem tất cả các clip</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <?php for ($i = 1; $i <= 9; $i++) { ?>
+                        <div class="col-md-4">
+                            <div class="clip-item">
+                                <div class="clip-img">
+                                    <a href="<?php echo Yii::app()->baseUrl ?>" title="">
+                                        <div class="icon-play">
+                                            <img src="<?php echo Yii::app()->theme->baseUrl ?>/images/video-play.png" alt=""/>
+                                        </div>
+                                        <img src="<?php echo Yii::app()->theme->baseUrl ?>/images/demo/clip.png" alt=""/>
+                                    </a>
+                                </div>
+                                <div class="clip-title">
+                                    <a href="#">Giải bài thi toán lớp:6</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/slide2.png"  class="pricing" alt="" />
-                            </div>
-                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
 
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/slide3.png" class="pricing" alt="" />
+        <div class="block-news">
+            <div class="title">
+                <h3>Tin tức mới cập nhật</h3>
+            </div>
+            <div class="content">
+                <div class="new-first">
+                    <div class="new">
+                        <div
+                            class="col-md-4"><?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseUrl . '/images/demo/new.png', ''), Yii::app()->createUrl('/'), array('class' => '')) ?></div>
+                        <div class="col-md-8">
+                            <a class="new-title" href="#">Nhiều trường 'trắng' học sinh chọn Sử</a>
+                            <div class="new-description">Kỳ thi THPT Quốc gia 2016 với ba môn bắt buộc là Toán, Văn, Anh văn và một môn tự chọn trong số các môn
+                                Sinh, Sử, Địa, Lý, Hóa.
+                                Dù đến 30/4, học sinh mới kết thúc hồ sơ đăng ký dự thi THPT Quốc gia 2016 nhưng thời điểm này, cơ bản các trường THPT đã nắm
+                                được danh sách học sinh đăng ký và chọn môn thi tương đối chính xác.
                             </div>
+                            <a class="new-more" href="#">Xem chi tiết >></a>
                         </div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-<img style="width: 100%" src="<?php echo Yii::app()->theme->baseUrl ?>/img/danhgia2.png">
-<div class="partner">
-    <div class="" style=" float: left; width: 70%;  margin: auto;   padding: 45px 0px;">
-        <div class="" style="">
-            <div class="col-sm-12">
-                <div class="col-sm-2">
-                    <a href="<?php echo Yii::app()->baseUrl.'/giai-bai-tap-toan'; ?>">
-                        <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/toan_ic.png" alt="" />
-                    </a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="<?php echo Yii::app()->baseUrl.'/giai-bai-tap-ly'; ?>">
-                        <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/ly_ic.png" alt="" />
-                    </a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="<?php echo Yii::app()->baseUrl.'/giai-bai-tap-hoa'; ?>">
-                        <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/hoa_ic.png" alt="" />
-                    </a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="<?php echo Yii::app()->baseUrl.'/giai-bai-tap-anh'; ?>">
-                        <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/anh_ic.png" alt="" />
-                    </a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="<?php echo Yii::app()->baseUrl.'/giai-bai-tap-van'; ?>">
-                        <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/van_ic.png" alt="" />
-                    </a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="<?php echo Yii::app()->baseUrl.'/giai-bai-tap-sinh'; ?>">
-                        <img src="<?php echo Yii::app()->theme->baseUrl ?>/img/sinh_ic.png" alt="" />
-                    </a>
+                <div class="clearfix"></div>
+                <div class="new-list">
+                    <ul>
+                        <li><a href="#">Chuỗi hội thảo du học, học bổng Đại học Monash (29/2)</a></li>
+                        <li><a href="#">Trường đại học tung học bổng hút thí sinh nữ vào ngành kỹ thuật (4/3)</a></li>
+                        <li><a href="#">Tháng du học và học bổng tới 400 triệu đồng (29/2)</a></li>
+                        <li><a href="#">Lợi thế khi du học từ bậc phổ thông (29/2)</a></li>
+                        <li><a href="#">Học bổng trung học Anh và tuyển sinh trực tiếp (1/3)</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
