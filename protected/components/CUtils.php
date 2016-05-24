@@ -381,7 +381,7 @@ class CUtils {
                 return $mobileNumber;
         }
         $valid_number = '';
-        if(preg_match('/^(84|0|)(91|94|123|124|125|127|129)\d{7}$/', $mobileNumber, $matches)){
+        if(preg_match('/^(84|0|)(91|94|123|124|125|127|129|88)\d{7}$/', $mobileNumber, $matches)){
                 /**
                  * $typeFormat == 0: 8491xxxxxx
                  * $typeFormat == 1: 091xxxxxx

@@ -306,7 +306,7 @@ class Subscriber extends CActiveRecord
 //		$subscriberTransaction->save();
 //                echo '<pre>'; print_r($subscriberTransaction);die;
                 if(!$subscriberTransaction->save()){
-                    echo '<pre>'; $subscriberTransaction->getErorrs();
+                    echo '<pre>'; print_r($subscriberTransaction->getErrors());
                 }
 //                echo 1;die;
 		return $subscriberTransaction;
@@ -749,7 +749,7 @@ class Subscriber extends CActiveRecord
 // 		if(!$sendSMS){
 // 			return $content;
 // 		}
-// 		$mt = VinaphoneController::sendSms($this->subscriber_number, $content);
+// 		$mt = Vinaphone::sendSms($this->subscriber_number, $content);
 // 		if($mt->mt_status != 0) {
 // 			return -1;
 // 		}

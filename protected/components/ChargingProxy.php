@@ -39,7 +39,7 @@ class ChargingProxy {
 			$debit_amount = intval($vod->price);
 		}
 		$original_price = intval($vod->price);
-		$response = VinaphoneController::charging($transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
+		$response = Vinaphone::charging($transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
 		Yii::log("chargingPayVod: error_code = " . $response->return);
 		return $response->return;
 	}
@@ -57,12 +57,12 @@ class ChargingProxy {
 		if($debit_amount == -1) {
 			$debit_amount = $original_price;
 		}
-		$response = VinaphoneController::charging2($username, $userip, $transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
+		$response = Vinaphone::charging2($username, $userip, $transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
 		Yii::log("chargingRegister: error_code = " . $response->return);
 		return $response->return;
 	}
 
-	 public static function chargingPromotionRegister($msisdn, $service, $transaction_id, $debit_amount = 0, $channel = CHANNEL_TYPE_WAP, $note = NULL) { //debit_amount == -1 -> == $service->price (truong hop promotion==0)
+	 public static function chargingPromotionRegister($username, $userip, $msisdn, $service, $transaction_id, $debit_amount = 0, $channel = CHANNEL_TYPE_WAP, $note = NULL) { //debit_amount == -1 -> == $service->price (truong hop promotion==0)
 	 	$msisdn = CUtils::validatorMobile($msisdn,0);
 	 	$command = self::CHARGING_REGISTER;
 	 	if($note == NULL) {
@@ -76,7 +76,7 @@ class ChargingProxy {
 	 	if($debit_amount == -1) {
 	 		$debit_amount = $original_price;
 	 	}
-	 	$response = VinaphoneController::charging($transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
+	 	$response = Vinaphone::charging2($username, $userip, $transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
 	 	Yii::log("chargingRegister: error_code = " . $response->return);
 	 	return $response->return;
 	 }
@@ -94,7 +94,7 @@ class ChargingProxy {
 		if($debit_amount == -1) {
 			$debit_amount = $original_price;
 		}
-		$response = VinaphoneController::charging($transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
+		$response = Vinaphone::charging($transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
 		Yii::log("chargingRegister: error_code = " . $response->return);
 		return $response;
 	}
@@ -104,7 +104,7 @@ class ChargingProxy {
 		$command = self::CHARGING_EXTEND_SERVICE;
 		$content = $service->code_name;
 		$debit_amount = $original_price = intval($service->price);
-		$response = VinaphoneController::charging($transaction_id, $msisdn, false, $debit_amount, $original_price, $command, $content, $channel);
+		$response = Vinaphone::charging($transaction_id, $msisdn, false, $debit_amount, $original_price, $command, $content, $channel);
 		Yii::log("chargingExtendService: error_code = " . $response->return);
 		return $response->return;
 	}
@@ -113,7 +113,7 @@ class ChargingProxy {
 		$msisdn = CUtils::validatorMobile($msisdn,0);
 		$command = self::CHARGING_CANCEL;
 		$content = $service->code_name;
-		$response = VinaphoneController::charging2($username, $userip, $transaction_id, $msisdn, false, 0, 0, $command, $content, $channel);
+		$response = Vinaphone::charging2($username, $userip, $transaction_id, $msisdn, false, 0, 0, $command, $content, $channel);
 		Yii::log("chargingCancel: error_code = " . $response->return);
 		return $response->return;
 	}
@@ -419,7 +419,7 @@ class ChargingProxy {
                 if ($channel_type == CHANNEL_TYPE_SMS) {
                     return $mtMessage;
                 } else {
-                    $res = VinaphoneController::sendSms($msisdn, $mtMessage);
+                    $res = Vinaphone::sendSms($msisdn, $mtMessage);
                     if (!empty($delaySms)) {
                         $smsQueue = new SmsQueue();
                         $smsQueue->subscriber_id = $subscriber->id;
@@ -438,7 +438,7 @@ class ChargingProxy {
                 if($channel_type == CHANNEL_TYPE_SMS) { //dang ky || huy bang SMS thi return message content de sendSms ben MolistenerController
                     return $mtMessage;
                 }
-                $res = VinaphoneController::sendSms($msisdn, $mtMessage);
+                $res = Vinaphone::sendSms($msisdn, $mtMessage);
             }
         }
         return self::PROCESS_ERROR_NONE;
@@ -522,7 +522,7 @@ class ChargingProxy {
 		}
 
 		$content = "Xin chao quy khach, thue bao ".$subscriber->subscriber_number." muon tang quy khach goi ".$service->display_name." cua dich vu xem Phim truc tuyen, gia ".intval($service->price)."d. De xac nhan, quy khach soan CO ".$giftConfirm->confirmation_code." gui 1579 (mien phi) de dong y nhan va xem phim mien phi.";
-		$mt = VinaphoneController::sendSms($receiver->subscriber_number, $content);
+		$mt = Vinaphone::sendSms($receiver->subscriber_number, $content);
 		if($mt->mt_status != 0) {
 			return self::PROCESS_ERROR_GENERAL;
 		}
@@ -539,27 +539,27 @@ class ChargingProxy {
 		));
 		if($giftConfirm == NULL){
 			$content = "Xin loi, quy khach nhap sai ma so tang, hoac quy khach khong duoc tang goi cuoc nao.";
-			VinaphoneController::sendSms($subscriber->subscriber_number, $content);
+			Vinaphone::sendSms($subscriber->subscriber_number, $content);
 			return self::PROCESS_ERROR_CODE_INVALID;
 		}
 
 		$serviceGift = $giftConfirm->service;
 		if($serviceGift == NULL){
 			$content = "Xin loi, hien tai goi cuoc tang cho ban khong ton tai tren he thong. Xin vui long truy cap http://vfilm.vn hoac goi CSKH de biet them chi tiet";
-			VinaphoneController::sendSms($subscriber->subscriber_number, $content);
+			Vinaphone::sendSms($subscriber->subscriber_number, $content);
 			return self::PROCESS_ERROR_INVALID_SERVICE;
 		}
 
 		$sendSubscriber = $giftConfirm->subscriber;
 		if($sendSubscriber == NULL){
 			$content = "Xin loi, hien nguoi tang goi cuoc cho ban da bi xoa khoi he thong. Xin voi long goi CSKH de biet them chi tiet!";
-			VinaphoneController::sendSms($subscriber->subscriber_number, $content);
+			Vinaphone::sendSms($subscriber->subscriber_number, $content);
 			return self::PROCESS_ERROR_INVALID_SERVICE;
 		}
 
 		if(strtotime($giftConfirm->expiration_date) < time()){
 			$content = "Yeu cau tang goi ".$serviceGift->display_name." cua quy khach da bi huy do qua thoi han xac nhan. Vui long thu lai hoac truy cap http://vfilm.vn de tiep tuc su dung dich vu.";
-			VinaphoneController::sendSms($sendSubscriber->subscriber_number, $content);
+			Vinaphone::sendSms($sendSubscriber->subscriber_number, $content);
 			$mtMessage = "Xin loi, goi cuoc ".$serviceGift->display_name." do thue bao ".$sendSubscriber->subscriber_number." tang quy khach da het hieu luc. De xem cac bo phim HOT nhat hien nay, truy cap http://vfilm.vn";
 			return self::PROCESS_ERROR_GIFT_EXPIRED;
 		}
@@ -578,7 +578,7 @@ class ChargingProxy {
 			}else if($chargingResult == NOK_NO_MORE_CREDIT_AVAILABLE) {
 				$errorCode = self::PROCESS_ERROR_NOT_ENOUGH_MONEY;
 				$content = "Xin loi, quy khach khong du tien de tang goi ".$serviceGift->display_name." cua dich vu xem Phim truc tuyen. Vui long nap them tien hoac chon goi khac de tang. Goi PHIM7 (15.000d/7 ngay). ";
-				VinaphoneController::sendSms($sendSubscriber->subscriber_number, $content);
+				Vinaphone::sendSms($sendSubscriber->subscriber_number, $content);
 				$mtMessage = "Xin loi. Nguoi tang goi cuoc cho quy khach khong du tien de thuc hien giao dich!";
 			}
 			else {
@@ -602,7 +602,7 @@ class ChargingProxy {
 				}
 				$subscriberService = $subscriber->addService($serviceGift,null,USING_TYPE_RECEIVE_GIFT);
 				$content = "Quy khach da tang thanh cong goi ".$serviceGift->display_name." cho thue bao ".$subscriber->subscriber_number.". Tai khoan cua quy khach bi tru ".intval($serviceGift->price)." dong. Cam on quy khach da su dung dich vu Xem phim truc tuyen";
-				VinaphoneController::sendSms($sendSubscriber->subscriber_number, $content);
+				Vinaphone::sendSms($sendSubscriber->subscriber_number, $content);
 				$mtMessage = "Quy khach da nhan duoc goi ".$serviceGift->display_name." cua dich vu xem phim truc tuyen, han su dung den ".date('d/m/Y H:i', strtotime($subscriberService->expiry_date)).". De su dung dich vu, truy cap http://vfilm.vn hoac goi CSKH de biet them chi tiet";
 			}
 			else {
@@ -612,14 +612,14 @@ class ChargingProxy {
 				$subscriberTransaction->update();
 			}
 			if(!empty($mtMessage)){
-				VinaphoneController::sendSms($subscriber->subscriber_number, $mtMessage);
+				Vinaphone::sendSms($subscriber->subscriber_number, $mtMessage);
 			}
 			return $errorCode;
 
 		}else{
 			// 			$content = "Quy khach dang su dung goi ".$usingService->service->display_name." cua dich vu xem phim truc tuyen, han su dung den ".date('d/m/Y H:i', strtotime($usingService->expiry_date)).". De su dung dich vu, truy cap http://vfilm.vn hoac goi CSKH de biet them chi tiet";
 			$content = "Quy khach hien dang su dung goi dich vu xem Phim truc tuyen-".$usingService->service->display_name.", ". intval($usingService->service->price) ."d, co thoi han den ".date('d/m/Y H:i', strtotime($usingService->expiry_date)).". Xin cam on!";
-			VinaphoneController::sendSms($subscriber->subscriber_number, $content);
+			Vinaphone::sendSms($subscriber->subscriber_number, $content);
 			return self::PROCESS_ERROR_USING_SERVICE;
 		}
 
