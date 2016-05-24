@@ -208,25 +208,6 @@ class VinaphoneController extends Controller
 			return false;
 		}
 	}
-	
-	/* public function actionTestMakeCheckoutUrl()
-	{
-		header("Content-type: text/plain");
-		echo ChargingController::makeCheckoutUrl(1, "Mua phim l??? XXX",
-				"20130504140500", 2000, 2000, "0", 
-				"http://ifilm.vn/charging/orderSuccess", 
-				"http://ifilm.vn/charging/orderFailed");
-	}
-	
-	public function actionTestMakeSubscriptionUrl()
-	{
-		header("Content-type: text/plain");
-		echo ChargingController::makeSubscriptionUrl(1, "Mua g??i c?????c XXX", "20130424193456",
-				"PH7", 1,
-				"http://ifilm.vn/charging/orderSuccess", 
-				"http://ifilm.vn/charging/orderFailed");
-	} */
-	
 	public function actionShowHeader()
 	{
 		header("Content-type: text/plain");
@@ -246,63 +227,6 @@ class VinaphoneController extends Controller
 		echo $found;
 	}
 	
-	/* public function actionTestCallHello()
-	{
-		$client = Yii::createComponent(array(
-	    'class' => 'ext.GWebService.GSoapClient',
-	    'wsdlUrl' => 'http://thuc.com/vnpcharging/charging/dataSyncWS'));
-		$res = $client->call('ChargingDataSyncProvider.sayHello', array('Thuc'));
-		echo "ws result: " . $res;
-	} */
-
-	/**
-	 * 
-	 * @param int $type (0: mua le, 1: dk service)
-	 */
-	/* public function actionMakeCheckoutURLTest($type = 0){
-		$orderId = 1;
-		$orderInfo = urlencode('Phim');
-		$orderDate = '20130504102700';
-		$price = 2000;
-		$originPrice = 2000;
-		$isPromotion = 0;
-		$note = urlencode('Khong co khuyen mai');
-		if($type == 0){
-			$returnUrl = urlencode('http://ifilm.vn/charging/evennotif');
-		}else{
-			$returnUrl = urlencode('http://ifilm.vn/charging/datasync');
-		}
-		$backUrl = urlencode('http://ifilm.vn/charging/datasync');
-		$secureCode = md5($orderId.$orderDate.self::VNP_SECURE_PASS);
-		$url = "http://wapgate.Viettel.com.vn/checkout.jsp?".
-				"orderid=$orderId&orderinfo=$orderInfo&orderdatetime=$orderDate".
-				"&price=$price&reason=".self::VNP_CHECKOUT_PARAM_REASON."&originalprice=$originPrice".
-				"&promotion=$isPromotion&note=&returnurl=$returnUrl".
-				"&backurl=$backUrl&servicename=".self::VNP_SERVICE_NAME.
-				"&securecode=$secureCode&language=vi";
-		
-		echo  $url;
-	} */
-	
-	/**
-	 * returnUrl c???a CheckoutCommit tr??? v??? ????y 
-	 */
-	/* public function actionCheckoutReturn()
-	{
-		$msisdn = isset($_REQUEST['msisdn']) ? $_REQUEST['msisdn'] : '';
-		$orderid = isset($_REQUEST['orderid']) ? $_REQUEST['orderid'] : '';
-		$transactionid = isset($_REQUEST['transactionid']) ? $_REQUEST['transactionid'] : '';
-		$checkoutdatetime = isset($_REQUEST['checkoutdatetime']) ? $_REQUEST['checkoutdatetime'] : '';
-		$securecode = isset($_REQUEST['securecode']) ? $_REQUEST['securecode'] : '';
-		$verify_secure_code = md5($orderid.$checkoutdatetime.$transactionid.self::VNP_SECURE_PASS);
-		$is_valid = false;
-		if ($securecode == $verify_secure_code) {
-			$is_valid = true;
-		}
-		
-		echo "msisdn: $msisdn, orderid: $orderid, checkoutdatetime: $checkoutdatetime, "
-				."transactionid: $transactionid, is_valid: $is_valid";
-	} */
 	
 	/**
 	 * backUrl c???a CheckoutCommit tr??? v??? ????y
@@ -312,107 +236,11 @@ class VinaphoneController extends Controller
 		
 	}
 	
-	/**
-	 * returnUrl c???a Subscription tr??? v??? ????y
-	 */
-	/* public function actionSubscriptionReturn()
-	{
-		$msisdn = isset($_REQUEST['msisdn']) ? $_REQUEST['msisdn'] : '';
-		$requestid = isset($_REQUEST['requestid']) ? $_REQUEST['requestid'] : '';
-		$result = isset($_REQUEST['result']) ? $_REQUEST['result'] : '';
-		$subscriptiondatetime = isset($_REQUEST['subscriptiondatetime']) ? $_REQUEST['subscriptiondatetime'] : '';
-		$securecode = isset($_REQUEST['securecode']) ? $_REQUEST['securecode'] : '';
-		$verify_secure_code = md5($requestid.$subscriptiondatetime.$result.self::VNP_SECURE_PASS);
-		$is_valid = false;
-		if ($securecode == $verify_secure_code) {
-			$is_valid = true;
-		}
-	
-		echo "msisdn: $msisdn, requestid: $requestid, subscriptiondatetime: $subscriptiondatetime, "
-		."result: $result, is_valid: $is_valid";
-	}
-	
-	public function actions() {
-		Yii::import('application.controllers.ChargingDataSyncProvider');
-		return array(
-				'dataSyncWS'=>array(
-						'class'    => 'ext.GWebService.GSoapServerAction',
-						'provider' => 'ChargingDataSyncProvider',
-				),
-		);
-	} */
-	
 	public function actionIndex()
 	{
 		header("Content-type: text/plain");
 		echo "index\nline 2";
 	}
-	
-	/* public function actionEvenNotif() {
-		echo header("Content-type: text/plain");
-// 		echo "POST data:\n";
-		$postdata = file_get_contents("php://input"); // lay raw POST data
-		Yii::log('post data: '.$postdata, 'error');	
-// 		 sample data 
-// 		$postdata = "
-// 		<event>
-// 		<action>PAYMENT</action>
-// 		<msisdn>[MSISDN]</msisdn>
-// 		<data>
-// 		<transactionid>[transactionid]</transactionid>
-// 		<orderid>[orderid]</orderid>
-// 		<price>[price]</price>s
-// 		<promotion>0</promotion>
-// 		<note>chi ti????t v???? n?????i dung ??u??????c khuy????n ma??i trong tru??????ng h????p promotion = 1</note> </data>
-// 		</event>";
-		
-		try {
-			$eventXML = new SimpleXMLElement($postdata);
-		}
-		catch (Exception $e) {
-			$eventXML = NULL;
-		}
-		$response = "<response>\n"
-				. "<action>PAYMENT</action>\n";
-		$error = 0;
-		$errorMsg = "";
-		if ($this->isValidNotif($eventXML)) {
-			$action = $eventXML->action;
-			$msisdn = $eventXML->msisdn;
-			$transactionId = $eventXML->data->transactionid;
-			$orderId = $eventXML->data->orderid;
-			$price = $eventXML->data->price;
-			$promotion = $eventXML->data->promotion;
-			$note = $eventXML->data->note;
-			
-			$subscriberOrder = SubscriberOrder::model()->findByPk($orderId);
-			if($subscriberOrder != NULL){
-				if($subscriberOrder->transaction_id == NULL && $transactionId != NULL){
-					$subscriberOrder->transaction_id = $transactionId;
-					$subscriberOrder->update();
-				}
-			}else{
-				return;
-			}
-
-			Yii::log('Transactionid : '.$transactionId.'| Order id: '.$orderId, 'error');			
-			$response .= "<msisdn>$msisdn</msisdn>\n";
-			
-// 			echo "action: $action, msisdn: $msisdn, transactionID: $transactionId, orderId: $orderId, price: $price, promo: $promotion, note: $note\n";
-		}
-		else {
-			$response .= "<msisdn></msisdn>\n";
-			$error = 1;
-			$errorMsg = "invalid data";
-		}
-		$response .= "<data>\n";
-		$response .= "<error>$error</error>\n";
-		$response .= "<error_desc>$errorMsg</error_desc>\n";
-		$response .= "</data>\n</response>";
-		Yii::log('response data: '.$response, 'error');
-		echo $response;
-	} */
-	
 	public function isValidNotif($eventXML) {
 		if ($eventXML != NULL && $eventXML->msisdn != NULL && strlen($eventXML->msisdn) > 0 
 		&& $eventXML->action=="PAYMENT") {

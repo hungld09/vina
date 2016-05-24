@@ -5,11 +5,17 @@
     <?php }else if($msisdn != '' && $usingServices != null){ ?>
        Xin chào thuê bao <?php echo $msisdn?>! Bạn đang sử dụng gói ngày của HOCDE.
     <?php }else{?>
-        Chưa nhận diện được thuê bao
+       Chưa nhận diện được thuê bao, Bạn đăng nhập <a href ='<?php echo Yii::app()->baseUrl . '/account/login' ?>'>Tại đây</a>
     <?php }?>
 </div>
 <div class="banner">
-    <a href="#popup-form" class="show-popup"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/banner.png" alt="" /></a>
+    <?php if($msisdn != '' && $usingServices == null){?>
+        <a href="#popup-form" class="show-popup"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/banner.png" alt="" /></a>
+    <?php }else if($msisdn != '' && $usingServices != null){ ?>
+       Xin chào thuê bao <?php echo $msisdn?>! Bạn đang sử dụng gói ngày của HOCDE.
+    <?php }else{?>
+       <a href ='<?php echo Yii::app()->baseUrl . '/account/login' ?>'><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/banner.png" alt="" /></a>
+    <?php }?>
     <form id="popup-form" class="mfp-hide white-popup-block">
         <div class="box-register">
             <div class="title-res">

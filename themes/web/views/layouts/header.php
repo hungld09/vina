@@ -10,7 +10,16 @@
                 <a class="link-menu color-red" href="javascript:;">Đăng nhập</a>
             </div>
             <div class="clearfix"></div>
-            <div class="wellcome">Xin chào thuê bao 0911321055! Vui lòng <a href="#" class="color-red">Đăng ký</a> để nhận Xem video bài giảng miễn phí mỗi ngày
+            <div class="wellcome">
+            <?php if($this->msisdn != '' && $this->usingServices == null){?>
+                Xin chào thuê bao 0911321055! Vui lòng <a href="#" class="color-red">Đăng ký</a> để nhận Xem video bài giảng miễn phí mỗi ngày
+            <?php }else if($this->msisdn != '' && $this->usingServices != null){ ?>
+               Xin chào thuê bao <?php echo $this->msisdn?>! Bạn đang sử dụng gói ngày của HOCDE.
+            <?php }else{?>
+               Chưa nhận diện được thuê bao, Bạn đăng nhập <a href ='<?php echo Yii::app()->baseUrl . '/account/login' ?>'>Tại đây</a>
+            <?php }?>
+            <!--<div class="wellcome">-->
+                <!--Xin chào thuê bao 0911321055! Vui lòng <a href="#" class="color-red">Đăng ký</a> để nhận Xem video bài giảng miễn phí mỗi ngày-->
             </div>
         </div>
         <div class="clearfix"></div>
@@ -32,7 +41,7 @@
                         ),
                         array(
                             'label' => 'Clip bài giảng',
-                            'url'   => array('/videos'),
+                            'url'   => array('/videos/list'),
                         ),
                         array(
                             'label' => 'Thư viện',

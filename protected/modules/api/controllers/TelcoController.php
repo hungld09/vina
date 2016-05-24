@@ -199,7 +199,7 @@ class TelcoController extends CController
         }
 
         $content = "Quy khach duoc tang goi " . $service->code_name . " xem mien phi dich vu phim truc tuyen iFilm cua MobiFone tu so may " . $this->subscriber->subscriber_number . ". Ban hay nhan tin \"CO " . $giftConfirm->confirmation_code . " \"gui 9033 de nhan qua. Truy cap http://ifilm.vn de su dung dich vu";
-        $mt = VinaphoneController::sendSms($receiver->subscriber_number, $content);
+        $mt = Vinaphone::sendSms($receiver->subscriber_number, $content);
         if ($mt->mt_status == 0) {
             $this->responseError(1, "Xảy ra lỗi trong quá trình tang goi dich vu $serviceType cho thuê bao $receiverNumber. Xin quý khách vui lòng thử lại sau");
         }
@@ -286,7 +286,7 @@ class TelcoController extends CController
         if(strpos ($note, 'CLEVERNET') !== false){
             $partnerIds = 11;
         }
-//        try {
+        try {
             $msisdn = CUtils::validatorMobile($msisdn);
             if (!isset($msisdn)) {
                 $registerResult = 101;
@@ -369,10 +369,11 @@ class TelcoController extends CController
             Yii::log("newTransaction actionRegisterService subscriber_number: " . $msisdn . "channel_type" . $channel);
             if ($channel != CHANNEL_TYPE_ADMIN){
                 $trans = $subscriber->newTransaction($channel, USING_TYPE_REGISTER, PURCHASE_TYPE_NEW, $service, null, null, $username, $userip);
+                $trans->save();
             }else{
                 $trans = new SubscriberTransaction();
             }
-            echo 1;die;
+//            echo 1;die;
             $trans->req_id = $requestid;
             if ($trans->cost != $cost) {
                 $trans->cost = $cost;
@@ -383,12 +384,12 @@ class TelcoController extends CController
             $chargingResult = CPS_OK;
             if ($isPromotionTrans) {
                 if ($channel != CHANNEL_TYPE_ADMIN){
-                    $chargingResult = ChargingProxy::chargingPromotionRegister($username, $userip, $msisdn, $service, $trans->id, 0, $channel, $note);
+                    $chargingResult = ChargingProxy::chargingPromotionRegister($msisdn, $service, $trans->id, 0, $channel, $note);
                 }else{
-                    $chargingResult = ChargingProxy::chargingPromotionRegister($username, $userip, $msisdn, $service, time(), 0, $channel, $note);
+                    $chargingResult = ChargingProxy::chargingPromotionRegister($msisdn, $service, time(), 0, $channel, $note);
                 }
             } else {
-                $c_response = ChargingProxy::chargingRegister($username, $userip, $msisdn, $service, $trans->id, false, intval($trans->cost), $channel, $note);
+                $c_response = ChargingProxy::chargingRegister2($msisdn, $service, $trans->id, false, intval($trans->cost), $channel, $note);
                 $chargingResult = $c_response->return;
                 if (isset($c_response->promotion) && isset($c_response->note) && isset($c_response->price) &&
                     $c_response->promotion == '1' && $c_response->price == '0' && $c_response->note == 'BIG032014'
@@ -428,7 +429,7 @@ class TelcoController extends CController
 
                 if ($application != 'IOS' && $channel != CHANNEL_TYPE_ADMIN) {
                     if (!empty($mtMessage)) {
-                        $res = VinaphoneController::sendSms($msisdn, $mtMessage);
+                        $res = Vinaphone::sendSms($msisdn, $mtMessage);
                     }
                 }
             } else if ($chargingResult == NOK_NO_MORE_CREDIT_AVAILABLE) {//thuong ko giao dich thanh cong do loi nay: loi thieu tien
@@ -497,10 +498,10 @@ class TelcoController extends CController
                 }
             }
             $this->responseError($registerResult, $this->getRegisterErrorMsg($registerResult));
-//        } catch (Exception $e) {
-//            Yii::log("Exception: " . $e->getMessage());
-//            $this->responseError($registerResult, $this->getRegisterErrorMsg($registerResult));
-//        }
+        } catch (Exception $e) {
+            Yii::log("Exception: " . $e->getMessage());
+            $this->responseError($registerResult, $this->getRegisterErrorMsg($registerResult));
+        }
     }
 
     private function getUsingDaysByPromotion($promotion, $service)
@@ -748,7 +749,7 @@ class TelcoController extends CController
                     $mo = explode('|', $note);
                     if ($mo[0] == 'MO' && $ssm == NULL) {
                         $mtMessage = 'Quy Khach chua dang ky dich vu goi ngay Hoc De. De dang ky dich vu, Quy Khach vui long soan HDD gui 9073. Chi tiet LH [dau so dich vu] hoac truy cap http://vhocde.vn.';
-                        $res = VinaphoneController::sendSms($msisdn, $mtMessage);
+                        $res = Vinaphone::sendSms($msisdn, $mtMessage);
                         $aDate = new DateTime();
                         $mt = new SmsMessage();
                         $mt->type = $mo[0];
@@ -795,7 +796,7 @@ class TelcoController extends CController
                 }
 //                }
                 $mtMessage = $this->getMTContent(self::ACTION_CANCEL, $application);
-                $res = VinaphoneController::sendSms($msisdn, $mtMessage);
+                $res = Vinaphone::sendSms($msisdn, $mtMessage);
                 $cancelResult = 0;
             }
             $infomation .= "chargingResult:$chargingResult|err:$cancelResult";
@@ -921,7 +922,7 @@ class TelcoController extends CController
                 file_put_contents($filelog, $infomation . "\r\n", FILE_APPEND | LOCK_EX);
                 if ($chargingResult == CPS_OK) {
                     $mtMessage = $this->getMTContent(self::ACTION_CANCEL, $application);
-                    //$res = VinaphoneController::sendSms($msisdn, $mtMessage);
+                    //$res = Vinaphone::sendSms($msisdn, $mtMessage);
 // 					$cancelResult = 0;
 // 					throw new Exception("Huy thanh cong");
                 } else {

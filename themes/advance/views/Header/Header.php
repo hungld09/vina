@@ -15,7 +15,7 @@
                         <a href="<?php echo Yii::app()->baseUrl.'/questionBank' ?>">Tìm kiếm thư viện</a>
                     </li>
                     <li>
-                        <a href="<?php echo Yii::app()->baseUrl.'/videos' ?>">clip bài giảng</a>
+                        <a href="<?php echo Yii::app()->baseUrl.'/videos/list' ?>">clip bài giảng</a>
                     </li>
                     <li>
                         <a href="<?php echo Yii::app()->baseUrl.'/blog' ?>">Tin tức</a>
