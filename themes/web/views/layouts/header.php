@@ -5,7 +5,7 @@
         </h1>
         <div class="pull-right text-right">
             <div class="nav-menu">
-                <a class="link-menu" href="javascript:;">Vinaphone Portal</a>
+                <a class="link-menu" href="http://vinaphone.com.vn/">Vinaphone Portal</a>
                 <a class="link-menu" href="javascript:;">CSKH</a>
                 <a class="link-menu color-red" href="javascript:;">Đăng nhập</a>
             </div>
@@ -62,5 +62,5 @@
 </header>
 
 <div class="banner-top">
-    <a href="#"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/demo/slide.png" alt=""/></a>
+    <a href="#"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/demo/slide.jpg" alt=""/></a>
 </div>

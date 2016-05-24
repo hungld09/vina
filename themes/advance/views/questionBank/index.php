@@ -12,7 +12,7 @@
         </div>
         <div class="input-box">
             <select name="class" class="classOption">
-                <option value="-1">Danh sách lớp</option>
+                <option value="0">Danh sách lớp</option>
                  <?php
                     foreach ($class as $class) {
                         ?>
@@ -22,15 +22,15 @@
             <span style="color: #f00; display: none" class="classValidate">Bạn chưa chọn lớp</span>
         </div>
         <div class="input-box">
-            <select  name="subject" class="subjectOption"><option value="-1">Danh sách Môn</option></select><br/>
+            <select  name="subject" class="subjectOption"><option value="0">Danh sách Môn</option></select><br/>
             <span style="color: #f00; display: none" class="subjectValidate">Bạn chưa chọn môn</span>
         </div>
         <div class="input-box">
-            <select name="chapter" class="chapterOption"><option value="-1">Danh sách Chương</option></select><br/>
+            <select name="chapter" class="chapterOption"><option value="0">Danh sách Chương</option></select><br/>
             <span style="color: #f00; display: none" class="chapterValidate">Bạn chưa chọn chương</span>
         </div>
         <div class="input-box">
-            <select name="unit" class="unitOption"><option value="-1">Danh sách bài</option></select><br/>
+            <select name="unit" class="unitOption"><option value="0">Danh sách bài</option></select><br/>
         </div>
         <button type="submit" class="search-question-bank" name="submit"><span><span >Tìm kiếm</span></span></button>
     </form>
@@ -41,7 +41,7 @@
         var subject_id = $('.subjectOption').val();
         var class_id = $('.classOption').val();
         var chapter_id = $(this).val();
-        if (chapter_id == -1) {
+        if (chapter_id == 0) {
             $('.chapterValidate').show();
             $(this).css('border', '1px solid #f00');
             return false;
@@ -63,7 +63,7 @@
     $('.subjectOption').change(function () {
         var subject_id = $(this).val();
         var class_id = $('.classOption').val();
-        if (subject_id == -1) {
+        if (subject_id == 0) {
             $('.subjectValidate').show();
             $(this).css('border', '1px solid #f00');
             return false;
@@ -84,7 +84,7 @@
     });
     $('.classOption').change(function () {
         var class_id = $(this).val();
-        if (class_id == -1) {
+        if (class_id == 0) {
             $('.classValidate').show();
             $(this).css('border', '1px solid #f00');
             return false;
@@ -110,19 +110,19 @@
         var unit_id = $('.unitOption').val();
         var tag_id = $('.tagOption').val();
         var uid = <?php echo 1 ?>;
-        if (class_id == -1 || class_id == '-1') {
+        if (class_id == 0 || class_id == '0') {
             $('.classValidate').show();
             $('.classOption').css('border', '1px solid #f00');
             return false;
         }
-        if (subject_id == -1 || subject_id == '-1') {
+        if (subject_id == 0 || subject_id == '0') {
             $('.subjectValidate').show();
             $('.classOption').css('border', '1px solid #ccc');
             $('.classValidate').hide();
             $('.subjectOption').css('border', '1px solid #f00');
             return false;
         }
-//        if(chapter_id == -1 || chapter_id=='-1'){
+//        if(chapter_id == 0 || chapter_id=='0'){
 //            $('.chapterValidate').show();
 //            $('.subjectOption').css('border','1px solid #ccc');
 //            $('.subjectValidate').hide();

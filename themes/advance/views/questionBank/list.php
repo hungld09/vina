@@ -95,7 +95,7 @@
         var unit_id = <?php echo $unit_id ?>;
         var title = <?php
             if ($title == '') {
-                echo $title = '-1';
+                echo $title = '';
             } else {
                 echo $title;
             }

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="footer-link">
         LIÊN
-        KẾT: <?php echo CHtml::link(CHtml::image(Yii::app()->theme->baseUrl . '/images/logo-link.png', ''), Yii::app()->createUrl('/'), array('class' => 'logo-link')) ?>
+        KẾT: <a href="http://vinaphone.com.vn/" class="logo-link"><img alt="" src="<?php echo Yii::app()->theme->baseUrl . '/images/logo-link.png' ?>"/></a>
         &nbsp;&nbsp;<span>Dịch vụ <a href="#">VHOCDE.VN</a> cung cấp ngân hàng câu hỏi và các Video bài giảng hay nhất.</span>
     </div>
 </div>

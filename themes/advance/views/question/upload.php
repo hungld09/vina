@@ -61,7 +61,6 @@
             <p style="font-weight: bold">Chú ý:</p>
             <p>- Mỗi ảnh chỉ được hỏi cho 1 câu độc lập</p>
             <p>- Với câu hỏi tập làm văn thì HỌC DỄ chỉ cung cấp dàn ý chi tiết.</p>
-            <p>- Nếu câu hỏi vượt quá mức độ bạn chọn, sau 24h bạn không nâng mức độ, hệ thống sẽ ẩn câu hỏi của bạn.</p>
         </div>
     </div>
 </form>
