@@ -147,7 +147,7 @@ class AccountController extends Controller
         $this->redirect(Yii::app()->homeurl.'/account');
     }
     
-    public function Register($transaction_id = '', $returnUrl = 'http://m2life.vn/', $package = 'NGAY', $channel = 'WAP') {
+    public function Register($transaction_id = '', $returnUrl = 'http://vhocde.vn/', $package = 'NGAY', $channel = 'WAP') {
         $transaction_id = self::makeRequestID();
         $request_id = $transaction_id;
         $returnUrl_encode = urlencode($returnUrl);
@@ -165,7 +165,7 @@ class AccountController extends Controller
         return $this->redirect($url);
     }
 
-    public function Cancel($transaction_id = '', $returnUrl = 'http://m2life.vn/', $package = 'NGAY', $channel = 'WAP') {
+    public function Cancel($transaction_id = '', $returnUrl = 'http://vhocde.vn/', $package = 'NGAY', $channel = 'WAP') {
         $transaction_id = self::makeRequestID();
         $request_id = $transaction_id;
         $returnUrl_encode = urlencode($returnUrl);
@@ -216,7 +216,7 @@ class AccountController extends Controller
                 Yii::app()->user->setFlash('thongbao', "Không tồn tại package!");
                 return $this->redirect(Yii::app()->homeurl . '/site');
             }
-            $this->Register($transaction_id = '', $returnUrl = 'http://hocde.vn', $package = $package['package_name'], $channel = 'WAP');
+            $this->Register($transaction_id = '', $returnUrl = 'http://vhocde.vn', $package = $package['package_name'], $channel = 'WAP');
         } else {
             Yii::app()->user->setFlash('thongbao', "Không tồn tại package!");
             return $this->redirect(Yii::app()->homeurl . '/site');
@@ -233,7 +233,7 @@ class AccountController extends Controller
                 Yii::app()->user->setFlash('thongbao', "Không tồn tại package!");
                 return $this->redirect(Yii::app()->homeurl . '/site');
             }
-            $this->Cancel($transaction_id = '', $returnUrl = 'http://hocde.vn', $package = $package['package_name'], $channel = 'WAP');
+            $this->Cancel($transaction_id = '', $returnUrl = 'http://vhocde.vn', $package = $package['package_name'], $channel = 'WAP');
         } else {
             Yii::app()->user->setFlash('thongbao', "Không tồn tại package!");
             return $this->redirect(Yii::app()->homeurl . '/site');
