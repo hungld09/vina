@@ -38,23 +38,12 @@
     <div id="tpl-contaiter">
         <div class="sign-main">
             <div class="sign-form">
-               <div class="sign-logo">
-                    <a href="#" style="font-family: font-dep"  data-toggle="modal" data-target="#myModal7" ><img src="<?php echo Yii::app()->theme->baseUrl ?>/img/logo2.png" /></a>
+                <div class="sign-logo">
+                    <a href="#" style="font-family: font-dep"  data-toggle="modal" data-target="#myModal5" ><img src="<?php echo Yii::app()->theme->baseUrl ?>/img/logo2.png" /></a>
                 </div>
                 <div class="sign-logo">
                     <a href="<?php echo $this->createUrl("/");?>"><img src="<?php echo Yii::app()->theme->baseUrl ?>/img/logo1.png" /></a>
                 </div>
-<!--                <div class="row icon-reg">
-                    <div class="col-lg-4 col-xs-4 col-md-4">
-                        <a href="#"><img src="<?php // echo Yii::app()->theme->baseUrl .'/img/dangnhap2.png'?>" /></a>
-                    </div>
-                    <div class="col-lg-4 col-xs-4 col-md-4">
-                        <a href="https://facebook.com/dialog/oauth?client_id=1054223384618565&redirect_uri=http://hocde.onedu.vn/account/loginface"> <img src="<?php echo Yii::app()->theme->baseUrl .'/img/fb2.png'?>" /></a>
-                    </div>
-                    <div class="col-lg-4 col-xs-4 col-md-4">
-                        <a href="https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http%3A%2F%2Fhocde.onedu.vn%2Faccount%2FloginGoogle&client_id=416965466359-5ic1landcm6r2tonkchmnrkiu0ukfqlh.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me&access_type=offline&approval_prompt=auto"> <img src="<?php echo Yii::app()->theme->baseUrl .'/img/gg2.png'?>" /></a>
-                    </div>
-                </div>-->
                 <div class="sign-input">
                     <form action="<?php echo $this->createUrl("/account/login"); ?>" method="post">
                         <div class="form-group">
@@ -65,78 +54,110 @@
                         </div>
                         <?php echo Yii::app()->user->getFlash('responseToUser'); ?><br/>
                         <button type="submit" class="btn btn-default sign-submit" name="submit">Đăng nhập</button>
-                        <div class="row" style="margin-top: 10px">
-                            <a type="submit" href="https://facebook.com/dialog/oauth?client_id=1054223384618565&redirect_uri=http://hocde.onedu.vn/account/channel1loginface?par=<?php echo $par; ?>" class="sign-submit"><img width="60%" src="<?php echo Yii::app()->theme->baseUrl ?>/img/dangnhapfb.png" /> </a>
-                        </div>
-                       <!--<a href="https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http%3A%2F%2Fhocde.onedu.vn%2Faccount%2FloginGoogle&client_id=416965466359-5ic1landcm6r2tonkchmnrkiu0ukfqlh.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me&access_type=offline&approval_prompt=auto" class="btn btn-default sign-submit">Google Plus</a>-->
                     </form>
-<!--                    <form action="#" method="post">
-                        <div class="row" style="margin-top: 10px">
-                            <a type="submit" href="https://facebook.com/dialog/oauth?client_id=1054223384618565&redirect_uri=http://hocde.onedu.vn/account/channel1loginface?par=<?php echo $par; ?>" class="sign-submit"><img width="60%" src="<?php echo Yii::app()->theme->baseUrl ?>/img/dangnhapfb.png" /> </a>
-                        </div>
-                    </form>-->
-                    <?php //// echo Yii::app()->session['user_id']; ?>
+                    <div class="sign-more">
+                        <a href="#"style="font-family: font-dep"  data-toggle="modal" data-target="#myModal1">Nhận mật khẩu</a> 
+                    </div>
+                    <div class="sign-more">
+                        <a href="https://vinaphone.com.vn/auth/login?service=#" style="font-family: font-dep"  data-toggle="modal">Đăng nhập với user VinaPortal</a> 
+                    </div>
                 </div>
-                <div class="sign-more">
-                    <a href="#" style="font-family: font-dep1">Bạn chưa có tài khoản?</a><br/>
-                    <a href="#"style="font-family: font-dep"  data-toggle="modal" data-target="#myModal7">Đăng ký</a><br/>
-                    <a href="#"style="font-family: font-dep"  data-toggle="modal" data-target="#myModal1">Quên mật khẩu</a> 
-                </div>
-<!--                <div class="sign-more">
-                    <a href="#"style="font-family: font-dep"  data-toggle="modal" data-target="#myModal7">Đăng ký</a><br/>
-                </div>-->
             </div>
         </div>
     </div>
-    <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-              <!--<form action="<?php // echo $this->createUrl("/account/register"); ?>" method="post">-->
-              <form action="#" method="post">
-                 <div class="row">
-                      <div class="form-group col-xs-6">
-                        <input type="text" class="form-control" name="firtname1" id="firtname1" placeholder="Họ">
-                      </div>
-                      <div class="form-group col-xs-6">
-                        <input type="text" class="form-control" name="lastname1" id="lastname1" placeholder="Tên">
-                      </div>
-                 </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="username2" id="username2" placeholder="Tên đăng nhập">
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+<!--                <div class="icon-mk" style="text-align: center; margin-top: 7px;">
+                    <a href="#"><img src="<?php echo Yii::app()->theme->baseUrl .'/img/icon.png'?>" width="35%"/></a>
+                </div>-->
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label>Nhập số điện thoại</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username1" id="username1" placeholder="Số điện thoại">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary reset_pass">Đồng ý</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" name="password1" id="password1" placeholder="Mật khẩu">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" name="password_confirm1" id="password_confirm1" placeholder="Nhập lại mật khẩu">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="mobile1" id="mobile1" placeholder="Số điện thoại">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="email1" id="email1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="partnerids1" id="partnerids1" placeholder="PartnerID">
-                </div>
-                <div class="form-group">
-                  <select class="form-control" name="type_account1" id="type_account1">
-                      <option value="1">Học sinh</option>
-                      <option value="2">Giáo viên</option>
-                  </select>
-                </div>
-                 <div class="modal-footer">
-                     <a class="loadgif" style="display: none"><img width="60px" src="<?php echo Yii::app()->theme->baseUrl .'/img/load.gif'?>" /></a>
-                    <button type="button" class="btn btn-primary register_sub_net2e">Đăng ký</button>
-                </div>
-              </form>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
 </body>
 <script>
+//    $('.submit-face').click(function(){
+//        location.href = 'https://facebook.com/dialog/oauth?client_id=1656037467964930&redirect_uri=http://hocde.onedu.vnaccount/loginface';
+//    });
+    $(".register_sub").click(function(){
+        var firtname =  $('#firtname').val();
+        var lastname =  $('#lastname').val();
+        var username =  $('#username').val();
+        var password =  $('#password').val();
+        var type =  $('#type_account').val();
+        var email =  $('#email').val();
+        var partnerid =  $('#partnerid').val();
+        var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        var password_confirm =  $('#password_confirm').val();
+        var mobile =  $('#mobile').val();
+        var reg=/^[a-zA-Z0-9]+$/;
+        if(firtname == '' || firtname.length < 1 || firtname.trim() < 1){
+            $("#firtname").css('border','1px solid #f00'); 
+            $('.noti-name').css('display', 'block');
+            return;
+        }else{
+            $("#firtname").css('border','1px solid #ccc');
+            $('.noti-name').css('display', 'none');
+        }
+        if(username == '' || username.length < 4 || username.trim() < 4 || !reg.test(username)){
+            $("#username").css('border','1px solid #f00');
+            $('.noti-uername').css('display', 'block');
+            return;
+        }else{
+            $('.noti-uername').css('display', 'none');
+            $("#username").css('border','1px solid #ccc');
+        }
+        if(password == '' || password.length < 6 || password.trim() < 6){
+            $("#password").css('border','1px solid #f00');
+            $('.noti-password').css('display', 'block');
+            return;
+        }else{
+            $('.noti-password').css('display', 'none');
+            $("#password").css('border','1px solid #ccc');
+        }
+        if(password_confirm == '' || password_confirm.length < 6 || password_confirm.trim() < 6){
+            $("#password_confirm").css('border','1px solid #f00');
+            $('.noti-password-cf').css('display', 'block');
+            return;
+        }else{
+            $('.noti-password-cf').css('display', 'none');
+            $("#password_confirm").css('border','1px solid #ccc');
+        }
+        if(password_confirm != password){
+            alert('Mật khẩu không trùng nhau'); return;
+        }
+        if(!re.test(email)){
+            alert('Không đúng định dạng Email');return false;
+        }
+        showLoad();
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo $this->createUrl("/account/register") ?>",
+            data: {'firtname':firtname,'lastname':lastname, 'username':username, 'password':password, 'password_confirm':password_confirm, 'mobile':mobile, 'email':email, 'partnerid':partnerid, 'type':type},
+            dataType:'html',
+            success: function(html){
+                hideLoad();
+                if(html == 1 || html == '1'){
+                     alert('Username đã tồn tại'); return false;
+                }
+                alert(html);
+                window.location.replace("<?php echo Yii::app()->homeurl?>");
+            }
+        });
+    });
     $(".register_sub_net2e").click(function(){
         var firtname =  $('#firtname1').val();
         var lastname =  $('#lastname1').val();
@@ -193,6 +214,24 @@
                 alert(html);
                 window.location.replace("<?php echo Yii::app()->homeurl?>");
 //                window.location.href = "<?php // echo Yii::app()->homeurl?>";
+            }
+        });
+    });
+    $('.reset_pass').click(function(){
+        var username =  $('#username1').val();
+        if(username == '' || username.length < 4 || username.trim() < 4){
+            $("#username1").css('border','1px solid #f00');return;
+        }else{
+            $("#username1").css('border','1px solid #ccc');
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo Yii::app()->homeurl .'/site/checkReset' ?>",
+            data: {'username':username},
+            dataType:'html',
+            success: function(html){
+                alert(html);
+                window.location.replace("<?php echo Yii::app()->homeurl .'/account'?>");
             }
         });
     });

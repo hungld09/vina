@@ -134,7 +134,7 @@ class AccountController extends Controller
                 return $this->redirect(Yii::app()->homeurl . '/account/login');
             }
         }else{
-            $this->redirect(Yii::app()->homeurl.'/account');
+            $this->render('/account/login');
         }
     }
     public function actionLogout(){
@@ -153,11 +153,11 @@ class AccountController extends Controller
         $returnUrl_encode = urlencode($returnUrl);
         $backUrl = $returnUrl;
         $backUrl_encode = urlencode($backUrl);
-        $cp = "CP_DIGISOFT";
-        $service = "MSTYLE";
+        $cp = "CP_NET2E";
+        $service = "HOCDE";
         $packagename = $package;
         $request_datetime = date('YmdHis');
-        $secure_pass = 'DIGISOFT@022016';
+        $secure_pass = 'NET2E@052016';
         $secure_code_before_md5 = $request_id . $returnUrl . $backUrl . $cp . $service . $packagename . $request_datetime . $channel . $secure_pass;
         $secure_code = md5($secure_code_before_md5);
         $note = "";
@@ -171,11 +171,11 @@ class AccountController extends Controller
         $returnUrl_encode = urlencode($returnUrl);
         $backUrl = $returnUrl;
         $backUrl_encode = urlencode($backUrl);
-        $cp = "CP_DIGISOFT";
-        $service = "MSTYLE";
+        $cp = "CP_NET2E";
+        $service = "HOCDE";
         $packagename = $package;
         $request_datetime = date('YmdHis');
-        $secure_pass = 'DIGISOFT@022016';
+        $secure_pass = 'NET2E@052016';
         $secure_code_before_md5 = $request_id . $returnUrl . $backUrl . $cp . $service . $packagename . $request_datetime . $channel . $secure_pass;
         $secure_code = md5($secure_code_before_md5);
         $note = "";

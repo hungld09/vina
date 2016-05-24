@@ -178,8 +178,8 @@ class QuestionController extends Controller {
                         $new_name = date('YmdHis') . '-' . rand() . '.' . $extention;
 
 //                        $director = 'upload/' . $question->id;
-                        $director = '/var/www/html/web/vina';
-                        $director1 = '/var/www/html/web/vina';
+                        $director = '/var/www/html/web/vina/question';
+                        $director1 = '/var/www/html/web/vina/question';
                         if (!file_exists($director)) {
                             mkdir($director, 0777, true);
                         }
@@ -201,7 +201,7 @@ class QuestionController extends Controller {
                         $questionImage->type = 1;
                         $questionImage->status = 1;
 //                        $questionImage->base_url = '/' . $director . '/' . $new_name;
-                        $questionImage->base_url = 'web/vina' . $new_name;
+                        $questionImage->base_url = 'web/vina/question' . $new_name;
 
 //                                Yii::log('subscriber_media : '.$media, 'error');
                         if (!$questionImage->save()) {
@@ -213,7 +213,7 @@ class QuestionController extends Controller {
                             echo $status;
                             die;
                         }
-                        $size = getimagesize('/var/www/html/web/vina/' . $new_name);
+                        $size = getimagesize('/var/www/html/web/vina/question/' . $new_name);
                         $questionImage->width = $size[0];
                         $questionImage->height = $size[1];
                         $questionImage->save();

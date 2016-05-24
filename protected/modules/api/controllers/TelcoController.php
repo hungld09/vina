@@ -384,12 +384,12 @@ class TelcoController extends CController
             $chargingResult = CPS_OK;
             if ($isPromotionTrans) {
                 if ($channel != CHANNEL_TYPE_ADMIN){
-                    $chargingResult = ChargingProxy::chargingPromotionRegister($username, $userip, $msisdn, $service, $trans->id, 0, $channel, $note);
+                    $chargingResult = ChargingProxy::chargingPromotionRegister($msisdn, $service, $trans->id, 0, $channel, $note);
                 }else{
-                    $chargingResult = ChargingProxy::chargingPromotionRegister($username, $userip, $msisdn, $service, time(), 0, $channel, $note);
+                    $chargingResult = ChargingProxy::chargingPromotionRegister($msisdn, $service, time(), 0, $channel, $note);
                 }
             } else {
-                $c_response = ChargingProxy::chargingRegister($username, $userip, $msisdn, $service, $trans->id, false, intval($trans->cost), $channel, $note);
+                $c_response = ChargingProxy::chargingRegister2($msisdn, $service, $trans->id, false, intval($trans->cost), $channel, $note);
                 $chargingResult = $c_response->return;
                 if (isset($c_response->promotion) && isset($c_response->note) && isset($c_response->price) &&
                     $c_response->promotion == '1' && $c_response->price == '0' && $c_response->note == 'BIG032014'

@@ -24,7 +24,7 @@
                     <?php $this->widget("application.widgets.Popup", array('msisdn'=>$this->msisdn, 'usingServices'=>$this->usingServices)); ?>
                     <?php echo $content ?>
                     <div class="lienket">
-                        liên kết: <img src="<?php echo Yii::app()->theme->baseUrl ?>/images/vinaphone.png" alt="" />
+                        liên kết: <a href ="http://vinaphone.com.vn"><img src="<?php echo Yii::app()->theme->baseUrl ?>/images/vinaphone.png" alt="" /></a>
                     </div>
                 </div>
             </div>

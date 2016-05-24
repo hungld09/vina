@@ -36,9 +36,9 @@ class VCGW
 
         $this->chargingUrl = $chargingUrl != '' ? $chargingUrl : $chargingConfig['url'];
         $this->chargingVasprovisioning = $chargingUrl != '' ? $chargingUrl : $chargingVasConfig['url'];
-        $this->name = $name != '' ? $name : $chargingConfig['name'];
-        $this->user = $user != '' ? $user : $chargingConfig['user'];
-        $this->pass = $pass != '' ? $pass : $chargingConfig['pass'];
+        $this->name = $name != '' ? $name : $chargingVasConfig['name'];
+        $this->user = $user != '' ? $user : $chargingVasConfig['user'];
+        $this->pass = $pass != '' ? $pass : $chargingVasConfig['pass'];
 
         $this->ch = new MyCurl();
         $this->ch->headers = array('Content-Type: text/xml');
@@ -79,9 +79,9 @@ class VCGW
         } elseif ($reason == ChargingProxy::CHARGING_CANCEL) {
             $subscribe = 'unsubscribe';
         }
-        $service = 'HD';
-        $package = 'HD';
-        $application = 'CP_SCT';
+        $service = 'HOCDE';
+        $package = 'NGAY';
+        $application = 'CP_NET2E';
         $policy = '';
         Yii::log("debug Start xml data param  = $user_name, $user_ip, $transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $reason, $trial, $bundle , $note, $channel, $subscribe\n");
         if ($reason == ChargingProxy::CHARGING_REGISTER) {

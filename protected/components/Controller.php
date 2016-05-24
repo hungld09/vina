@@ -74,7 +74,7 @@ class Controller extends CController {
                 $this->msisdn = $headers['X-WAP-MSISDN'];
             }
         }
-        $this->msisdn = '84911321055';
+//        $this->msisdn = '84911321055';
         //Check xem dang nhap qua wifi ko?
         if ($this->msisdn == '') {
             $this->accessType = self::$ACCESS_VIA_WIFI;

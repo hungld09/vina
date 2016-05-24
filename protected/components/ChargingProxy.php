@@ -66,7 +66,7 @@ class ChargingProxy {
 	 	$msisdn = CUtils::validatorMobile($msisdn,0);
 	 	$command = self::CHARGING_REGISTER;
 	 	if($note == NULL) {
-	 		$content = "FREE_FIRST_CYCLE";
+	 		$content = 'FREE_FIRST_CYCLE';
 	 	}
 	 	else {
 	 		$content = $note;
@@ -76,7 +76,7 @@ class ChargingProxy {
 	 	if($debit_amount == -1) {
 	 		$debit_amount = $original_price;
 	 	}
-	 	$response = Vinaphone::charging2($username, $userip, $transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
+	 	$response = Vinaphone::charging($transaction_id, $msisdn, $promotion, $debit_amount, $original_price, $command, $content, $channel);
 	 	Yii::log("chargingRegister: error_code = " . $response->return);
 	 	return $response->return;
 	 }
