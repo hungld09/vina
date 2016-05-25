@@ -146,18 +146,19 @@ class QuestionController extends Controller {
     public function actionSaveUpload() {
         header("Content-Type: text/html;charset=utf-8");
         if (isset($_POST) && isset($_FILES)) {
+            $subscriber = Subscriber::model()->findByAttributes(array('subscriber_number'=>$this->msisdn));
             $question = new Question();
             $question->title = isset($_POST['title']) ? $_POST['title'] : null;
             $question->title_ascii = isset($_POST['title']) ? $_POST['title'] : null;
             $question->category_id = isset($_POST['subject']) ? $_POST['subject'] : null;
             $question->class_id = isset($_POST['class1']) ? $_POST['class1'] : null;
-            $question->subscriber_id = $this->id;
+            $question->subscriber_id = $subscriber->id;
             $question->status = 15;
             $question->create_date = date('Y-m-d H:i:s');
             $question->modify_date = date('Y-m-d H:i:s');
             // tru tien
             $fcoin = 5000;
-            $subscriber = Subscriber::model()->findByPk($this->id);
+            $subscriber = Subscriber::model()->findByPk($subscriber->id);
 //            if($subscriber->fcoin < $fcoin){
 //                echo 1;die;
 //            }
@@ -226,8 +227,8 @@ class QuestionController extends Controller {
                 $question->status = 1;
                 $question->save();
                 $checkThee = $this->checkTheeQuestion($subscriber, $question, $transaction, $fcoin);
-                $CUtils = new CUtils();
-                $CUtils->notifiquestionEmail($question);
+//                $CUtils = new CUtils();
+//                $CUtils->notifiquestionEmail($question);
             }
         }
     }
