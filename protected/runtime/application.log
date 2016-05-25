@@ -49601,3 +49601,21 @@ Stack trace:
 REQUEST_URI=/vhocde/
 in D:\xampp\htdocs\vhocde\protected\components\Controller.php (99)
 in D:\xampp\htdocs\vhocde\index.php (14)
+2016/05/24 18:02:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/web/images/clip.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/web/imag...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/web/images/clip.png
+HTTP_REFERER=http://localhost/vhocde/index.php/videos/list
+---
+2016/05/24 18:02:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/web/images/thume.png".' in D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/web/imag...')
+#1 D:\xampp\htdocs\yii-1.1.14.f0fee9\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\vhocde\index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/vhocde/themes/web/images/thume.png
+HTTP_REFERER=http://localhost/vhocde/index.php/videos/list
+---
