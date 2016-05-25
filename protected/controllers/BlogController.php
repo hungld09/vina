@@ -41,6 +41,12 @@
         {
             $this->titlePage = 'Tin tức và sự kiện';
             $results         = Blog::model()->findByPk($id);
+            if (!$results) {
+                $this->render('site/error',
+                    array('code' => 404, 'message' => 'Bài viết không tồn tại!')
+                );
+                die;
+            }
             $this->render('blog/detail', array('item' => $results));
         }
 

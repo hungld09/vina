@@ -679,12 +679,18 @@ select {
 }
 
 .box-news ul li div.thum1 {
-    left: 0;
-    position: absolute;
-    top: 0;
+    float: left;
+    width: 85px;
+    margin-right: 10px
 }
 
 .box-result ul li .thum1 {
+    float: none;
+    left: 0;
+    margin-right: 0;
+    position: absolute;
+    top: 0;
+    width: 32px;
 }
 
 .box-news ul li h3 a, .box-news ul li h3 {
@@ -699,9 +705,11 @@ select {
 }
 
 .box-news ul li {
-    color: #7a7a7a;
-    padding: 0 0 15px 86px;
+    border-bottom: 1px solid #f1f1f1;
     position: relative;
+    padding: 0 0 15px;
+    margin: 0 0 15px;
+    color: #7a7a7a;
 }
 
 .box-result ul li {
@@ -709,12 +717,15 @@ select {
 }
 
 .infor {
-    border-bottom: 1px solid #f1f1f1;
     padding: 0 10px 14px 0;
 }
 
 .infor table {
     margin-top: 10px
+}
+
+.infor table td {
+    padding: 5px
 }
 
 /*formUpload*/
@@ -764,7 +775,11 @@ ul li {
     list-style: none;
 }
 
-.item-ques:after, .item-top:after {
+.new-detail ul li {
+    list-style: disc none inside;
+}
+
+.item-ques::after, .item-top::after, .box-news ul li::after {
     display: block;
     content: ".";
     clear: both;

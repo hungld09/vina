@@ -6,7 +6,7 @@
         maximum-scale=1.0; user-scalable=0;"/>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl . '/css/vina/magnific-popup.css' ?>"/>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl . '/css/vina/styles.css' ?>"/>
-        <title>VinaPhone</title>
+        <title><?php echo CHtml::encode($this->titlePage); ?></title>
         <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl . '/js/vina/jquery-1.10.2.js' ?>"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl . '/js/vina/jquery.magnific-popup.min.js' ?>"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl . '/js/vina/main.js' ?>"></script>

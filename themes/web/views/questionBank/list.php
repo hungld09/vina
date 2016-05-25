@@ -91,17 +91,15 @@
 <script>
     $('.loadmore').click(function () {
         var click = parseInt($('.loadmore').attr('click')) + 1;
-        var class_id = <?php echo $class_id ?>;
-        var subject_id = <?php echo $subject_id ?>;
-        var chapter_id = <?php echo $chapter_id ?>;
-        var unit_id = <?php echo $unit_id ?>;
-        var title = <?php
-            if ($title == '') {
-                echo $title = '-1';
-            } else {
+        var class_id = <?php echo (isset($class_id)) ? $class_id : 0 ?>;
+        var subject_id = <?php echo (isset($subject_id)) ? $subject_id : 0 ?>;
+        var chapter_id = <?php echo (isset($chapter_id)) ? $chapter_id : 0 ?>;
+        var unit_id = <?php echo (isset($unit_id)) ? $unit_id : 0 ?>;
+        var title = '<?php
+            if (isset($title)) {
                 echo $title;
             }
-            ?>;
+            ?>';
         $('.loadmore').attr('click', click);
         //        showLoadItem();
         $.ajax({
