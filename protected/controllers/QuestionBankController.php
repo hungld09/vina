@@ -201,13 +201,14 @@
         public function actionList()
         {
             $this->titlePage = 'Kết quả tìm kiếm';
-            $title           = !empty($_GET['namequestion']) ? $_GET['namequestion'] : '';
-            $class_id        = isset($_GET['class']) ? $_GET['class'] : NULL;
-            $subject_id      = isset($_GET['subject']) ? $_GET['subject'] : NULL;
-            $chapter_id      = isset($_GET['chapter']) ? $_GET['chapter'] : NULL;
-            $unit_id         = !empty($_GET['unit']) ? $_GET['unit'] : 0;
-            $tag_id          = isset($_GET['QuestionLib']['questionTag']) ? $_GET['QuestionLib']['questionTag'] : NULL;
-            $page            = isset($_GET['page']) ? $_GET['page'] : 1;
+
+            $title      = !empty($_GET['namequestion']) ? $_GET['namequestion'] : '';
+            $class_id   = isset($_GET['class']) ? $_GET['class'] : 0;
+            $subject_id = isset($_GET['subject']) ? $_GET['subject'] : 0;
+            $chapter_id = isset($_GET['chapter']) ? $_GET['chapter'] : 0;
+            $unit_id    = !empty($_GET['unit']) ? $_GET['unit'] : 0;
+//            $tag_id     = isset($_GET['QuestionLib']['questionTag']) ? $_GET['QuestionLib']['questionTag'] : 0;
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
             $page_size = 10;
             if (isset($_GET['page'])) {
@@ -221,40 +222,59 @@
                 $subscriber = Subscriber::model()->findByPk(Yii::app()->session['user_id']);
                 $this->render('questionBank/list', array('result' => $result, 'subscriber' => $subscriber));
             } else {
-                $arTagId      = explode(',', $tag_id);
-                $arQuestionId = array();
-                foreach ($arTagId as $item) {
-                    $mappingQuesTag = TagQuestionMapping::model()->findAllByAttributes(array('tag_id' => $item));
-                    if (count($mappingQuesTag) > 0) {
-                        foreach ($mappingQuesTag as $ite) {
-                            $arQuestionId[] = $ite->question_id;
-                        }
+//                $arTagId      = explode(',', $tag_id);
+//                $arQuestionId = array();
+//                foreach ($arTagId as $item) {
+//                    $mappingQuesTag = TagQuestionMapping::model()->findAllByAttributes(array('tag_id' => $item));
+//                    if (count($mappingQuesTag) > 0) {
+//                        foreach ($mappingQuesTag as $ite) {
+//                            $arQuestionId[] = $ite->question_id;
+//                        }
+//                    }
+//                }
+
+                $criteria = new CDbCriteria;
+
+                if ($class_id > 0 && $subject_id > 0) {
+                    $criteria->compare('class_id', $class_id);
+                    $criteria->compare('subject_id', $subject_id);
+
+                    if ($chapter_id > 0) {
+                        $criteria->compare('chapter_id', $chapter_id);
+                    }
+
+                    if (trim($title) != '') {
+                        $title = CVietnameseTools::removeSigns2($title);
+                        $criteria->compare('question_ascii', trim($title), TRUE);
+                    }
+                    if ($unit_id > 0) {
+                        $criteria->compare('bai_id', $unit_id);
                     }
                 }
-                $criteria = new CDbCriteria;
-                $criteria->compare('class_id', $class_id);
-                $criteria->compare('subject_id', $subject_id);
-                if ($chapter_id > 0) {
-                    $criteria->compare('chapter_id', $chapter_id);
-                }
-                if (count($arQuestionId) > 0) {
-                    $criteria->addInCondition("id", $arQuestionId);
-                }
+
+//                if (count($arQuestionId) > 0) {
+//                    $criteria->addInCondition("id", $arQuestionId);
+//                }
+
                 $criteria->addCondition("status != 2");
-                if (trim($title) != '') {
-                    $title = CVietnameseTools::removeSigns2($title);
-                    $criteria->compare('question_ascii', trim($title), TRUE);
-                }
-                if ($unit_id > 0) {
-                    $criteria->compare('bai_id', $unit_id);
-                }
+
 //            $criteria->compare('status',1);
 //            $criteria->compare('status', 0, false, 'OR');
                 $criteria->limit  = $page_size;
                 $criteria->offset = $offset;
-                $result           = QuestionLib::model()->findAll($criteria);
-                $subscriber       = Subscriber::model()->findByPk(Yii::app()->session['user_id']);
-                $this->render('questionBank/list', array('result' => $result, 'subscriber' => $subscriber, 'class_id' => $class_id, 'subject_id' => $subject_id, 'chapter_id' => $chapter_id, 'unit_id' => $unit_id, 'title' => $title));
+
+                $result = QuestionLib::model()->findAll($criteria);
+//                $subscriber       = Subscriber::model()->findByPk(Yii::app()->session['user_id']);
+
+                $this->render('questionBank/list', array(
+                    'result'     => $result,
+//                    'subscriber' => $subscriber,
+                    'class_id'   => $class_id,
+                    'subject_id' => $subject_id,
+                    'chapter_id' => $chapter_id,
+                    'unit_id'    => $unit_id,
+                    'title'      => $title,
+                ));
             }
         }
 

@@ -7,7 +7,7 @@
         <li><span><?php echo $item->title; ?></span></li>
     </ul>
 </div>
-<div class="box-news">
+<div class="">
     <div class="new-detail">
         <h1><?php echo $item->title; ?></h1>
         <?php

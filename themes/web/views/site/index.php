@@ -44,7 +44,7 @@
             <div class="title">
                 <h3 class="pull-left">Clip bài giảng mới</h3>
                 <div class="pull-right">
-                    <a href="#">Xem tất cả các clip</a>
+                    <a href="<?php echo Yii::app()->baseUrl . '/videos/list' ?>">Xem tất cả các clip</a>
                 </div>
                 <div class="clearfix"></div>
             </div>

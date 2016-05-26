@@ -7,7 +7,7 @@
             <div class="nav-menu">
                 <a class="link-menu" href="http://vinaphone.com.vn/">Vinaphone Portal</a>
                 <a class="link-menu" href="javascript:;">CSKH</a>
-                <a class="link-menu color-red" href="javascript:;">Đăng nhập</a>
+                <a class="link-menu color-red" href="<?php echo Yii::app()->baseUrl . '/account/login' ?>">Đăng nhập</a>
             </div>
             <div class="clearfix"></div>
             <div class="wellcome">
