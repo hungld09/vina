@@ -12,7 +12,7 @@
             <div class="clearfix"></div>
             <div class="wellcome">
             <?php if($this->msisdn != '' && $this->usingServices == null){?>
-                Xin chào thuê bao 0911321055! Vui lòng <a href="#" class="color-red">Đăng ký</a> để nhận Xem video bài giảng miễn phí mỗi ngày
+                Xin chào thuê bao 0911321055! Vui lòng <a href="<?php echo Yii::app()->baseUrl .'/account/registerService?package=NGAY' ?>" class="color-red">Đăng ký</a> để nhận Xem video bài giảng miễn phí mỗi ngày
             <?php }else if($this->msisdn != '' && $this->usingServices != null){ ?>
                Xin chào thuê bao <?php echo $this->msisdn?>! Bạn đang sử dụng gói ngày của HOCDE.
             <?php }else{?>

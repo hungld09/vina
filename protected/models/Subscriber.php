@@ -285,7 +285,7 @@ class Subscriber extends CActiveRecord
 			$subscriberTransaction->cost = isset($service) ? $service->price : 0;
 		} else if ($using_type == 2) { // mua le
 			$subscriberTransaction->description = "HOCDE" . (isset($asset) ? " " . $asset->display_name . " [".$asset->id."]" : "");
-			$subscriberTransaction->cost = isset($asset) ? $asset->price : 0;
+			$subscriberTransaction->cost = 5000;
 		}  else if ($using_type == USING_TYPE_CHARGING_SMS){
 			$subscriberTransaction->cost = 100;
 			$subscriberTransaction->description = "sms";
@@ -298,17 +298,14 @@ class Subscriber extends CActiveRecord
 			$subscriberTransaction->error_code = "free";
 		}
 		$subscriberTransaction->channel_type = $channel_type; // WEB, WAP, SMS, APP, ...
+		$subscriberTransaction->status = 2; // WEB, WAP, SMS, APP, ...
 	
-		//TODO:event_id dung lam gi?
-		//$subscriberTransaction->event_id = '';
 		$subscriberTransaction->using_type = $using_type;//0: mua dich vu, 1: mua cau hoi,
-		$subscriberTransaction->purchase_type = $purchase_type; //0: mua moi, 1: gia han, 2: chu dong huy, 3: bi huy
+		$subscriberTransaction->purchase_type = $purchase_type; //0: mua moi, 1: gia han, 2: chu dong huy, 3: bi huy, 5: mua le
 //		$subscriberTransaction->save();
-//                echo '<pre>'; print_r($subscriberTransaction);die;
                 if(!$subscriberTransaction->save()){
                     echo '<pre>'; print_r($subscriberTransaction->getErrors());
                 }
-//                echo 1;die;
 		return $subscriberTransaction;
 	}
 	

@@ -162,7 +162,7 @@ class QuestionController extends Controller {
 //            if($subscriber->fcoin < $fcoin){
 //                echo 1;die;
 //            }
-            $transaction = $subscriber->newTransactionServiceQuestion(PURCHASE_TYPE_QUESTION, $fcoin, $subscriber);
+            $transaction = $subscriber->newTransaction('WAP', 2, PURCHASE_TYPE_QUESTION);
             if (!$question->save()) {
                 echo "<pre>";
                 print_r($question->getErrors());
